@@ -1,0 +1,30 @@
+Class Equipment
+	String name
+	int requirment
+	int stat
+
+Class Weapon extends Equipment
+Class Shield extends Equipment
+Class Helm extends Equipment
+Class Chest extends Equipment
+Class Pants extends Equipment
+
+Class Creature
+	String name
+	int health
+	int level
+	int experience
+	Weapon weapon
+	Shield shield
+	Helm helm
+	Body body
+	Pants pants
+
+Class Player extends Creature
+Class Monster extends Creature
+
+Later:
+Randomized dungeons
+    Easy
+    Medium
+    Hard
