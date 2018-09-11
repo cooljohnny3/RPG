@@ -1,7 +1,7 @@
 #ifndef SHIELD_CPP
 #define SHIELD_CPP
 
-#include "Shield.h"
+#include "Headers/Shield.h"
 
 Shield::Shield() : Equipment() {}
 

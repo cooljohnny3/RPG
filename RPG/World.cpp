@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <fstream>
-#include "World.h"
-#include "Dungeon.h"
+#include "Headers/World.h"
+#include "Headers/Dungeon.h"
 
 World::World(){}
 

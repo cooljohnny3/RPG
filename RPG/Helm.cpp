@@ -1,7 +1,7 @@
 #ifndef HELM_CPP
 #define HELM_CPP
 
-#include "Helm.h"
+#include "Headers/Helm.h"
 
 Helm::Helm() : Equipment() {}
 

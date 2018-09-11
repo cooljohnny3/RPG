@@ -1,7 +1,7 @@
 #ifndef PANTS_CPP
 #define PANTS_CPP
 
-#include "Pants.h"
+#include "Headers/Pants.h"
 
 Pants::Pants() : Equipment() {}
 

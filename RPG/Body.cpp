@@ -1,7 +1,7 @@
 #ifndef BODY_CPP
 #define BODY_CPP
 
-#include "Body.h"
+#include "Headers/Body.h"
 
 Body::Body() : Equipment() {}
 

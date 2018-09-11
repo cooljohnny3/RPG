@@ -1,7 +1,7 @@
 #ifndef WEAPON_CPP
 #define WEAPON_CPP
 
-#include "Weapon.h"
+#include "Headers/Weapon.h"
 
 Weapon::Weapon() : Equipment(){}
 
