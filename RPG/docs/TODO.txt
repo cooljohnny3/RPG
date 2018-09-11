@@ -1,8 +1,0 @@
-main goal:
-loading
-
-later (no priority):
-change inv so first slots are equipped items
-dungeon level (enter on level already been? or player's level?)
-experience stuff
-make dying in dugeon code better (eventually...)
