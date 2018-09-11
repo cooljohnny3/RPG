@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <fstream>
-#include "Headers/World.h"
-#include "Headers/Dungeon.h"
+#include "headers/World.h"
+#include "headers/Dungeon.h"
 
 World::World(){}
 
@@ -116,7 +116,7 @@ void World::save(){
 		std::cout << "Enter a name: ";
 		std::cin >> name;
 
-		f.open("Saves/" + name, std::fstream::in);
+		f.open("saves/" + name, std::fstream::in);
 
 		if(f.peek() != std::ifstream::traits_type::eof()){
 			std::cout << "A file with that name already exists, would you like to overwrite this? (Y/N)";
@@ -133,7 +133,7 @@ void World::save(){
 
 	f.close();
 
-	f.open("Saves/" + name, std::fstream::out);
+	f.open("saves/" + name, std::fstream::out);
 
 	f << p->getName() << std::endl;
 	f << p->getMaxHealth() << std::endl;
@@ -155,7 +155,7 @@ void World::load(){
 		std::cout << "Enter the name of the file to load: ";
 		std::cin >> name;
 
-		f.open("Saves/" + name, std::fstream::in);
+		f.open("saves/" + name, std::fstream::in);
 
 		if(f.peek() != std::ifstream::traits_type::eof()){
 			std::cout << "A file with that name already exists, would you like to overwrite it? (Y/N)";
@@ -169,7 +169,7 @@ void World::load(){
 		else
 			valid = false;	
 	}
-	f.open("Saves/" + name, std::fstream::in);
+	f.open("saves/" + name, std::fstream::in);
 
 	for(int i = 0; i < 5; i++)
 		f >> stats[i];

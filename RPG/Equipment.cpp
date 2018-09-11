@@ -1,7 +1,7 @@
 #ifndef EQUIPMENT_CPP
 #define EQUIPMENT_CPP
 
-#include "Headers/Equipment.h"
+#include "headers/Equipment.h"
 
 Equipment::Equipment()
 {

@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <cmath>
-#include "Headers/Player.h"
+#include "headers/Player.h"
 
 using namespace std;
 
