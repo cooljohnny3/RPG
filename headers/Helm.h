@@ -1,7 +1,7 @@
 #ifndef HELM_H
 #define HELM_H
 
-#include "Equipment.h"
+#include "./Equipment.h"
 
 class Helm : public Equipment {
 public:

@@ -81,7 +81,7 @@ void World::loadedMenu(){
 void World::enterDung(int difficulty){  //difficulty not yet implimented
 	Dungeon d = Dungeon();
 	int status;
-	char choice = NULL;
+	char choice = 'y';
 
 	std::cout << "You enter the dungeon..." << std::endl;
 	status = d.combat(p);

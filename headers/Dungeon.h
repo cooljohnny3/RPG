@@ -1,8 +1,8 @@
 #ifndef DUNGEON_H
 #define DUNGEON_H
 
-#include "Player.h"
-#include "Monster.h"
+#include "./Player.h"
+#include "./Monster.h"
 
 class Dungeon{
 public:

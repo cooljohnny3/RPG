@@ -1,7 +1,7 @@
 #ifndef BODY_H
 #define BODY_H
 
-#include "Equipment.h"
+#include "./Equipment.h"
 
 class Body : public Equipment {
 public:

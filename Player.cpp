@@ -55,8 +55,8 @@ void Player::addHealth(int num){
 //XP (need to actually do this)
 void Player::addXp(int xp) {
 	experience += xp;
-	if (experience > (level + 2) ^ 2) {
-		experience -= (level + 2) ^ 2;
+	if (experience > ((level + 2) ^ 2)) {
+		experience -= ((level + 2) ^ 2);
 		level += 1;
 	}
 }

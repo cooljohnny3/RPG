@@ -1,7 +1,7 @@
 #ifndef SHIELD_H
 #define SHIELD_H
 
-#include "Equipment.h"
+#include "./Equipment.h"
 
 class Shield : public Equipment{
 public:

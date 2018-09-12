@@ -1,11 +1,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Body.h"
-#include "Helm.h"
-#include "Pants.h"
-#include "Shield.h"
-#include "Weapon.h"
+#include "./Body.h"
+#include "./Helm.h"
+#include "./Pants.h"
+#include "./Shield.h"
+#include "./Weapon.h"
 
 class Player {
 public:
