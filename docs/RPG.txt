@@ -10,20 +10,20 @@ Class Chest extends Equipment
 Class Pants extends Equipment
 
 Class Creature
-	String name
+  String name
   int maxHealth
-	int health
+  int health
   int attack
   int defense
 
 Class Player extends Creature
   int level
-	int experience
-	Weapon weapon
-	Shield shield
-	Helm helm
-	Body body
-	Pants pants
+  int experience
+  Weapon weapon
+  Shield shield
+  Helm helm
+  Body body
+  Pants pants
 
 Class Monster extends Creature
 
