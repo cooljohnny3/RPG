@@ -34,6 +34,6 @@ private:
 	Helm helm;
 	Body body;
 	Pants pants;
-  int calculateStats();
+  void calculateStats();
 };
 #endif

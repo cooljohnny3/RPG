@@ -23,7 +23,7 @@ Player::Player(int n, int m, int h, int l, int e) {
   calculateStats();
 }
 
-int Player::calculateStats() {
+void Player::calculateStats() {
   setAttack(weapon.getStat());
   int sum = 0;
   sum += getWep().getStat();
