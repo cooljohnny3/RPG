@@ -9,4 +9,4 @@ loading
 change inv so first slots are equipped items
 Select dungeon level
 experience stuff
-make dying in dugeon code better
+make dying in dungeon code better
