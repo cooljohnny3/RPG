@@ -1,6 +1,3 @@
-#ifndef MONSTER_CPP
-#define MONSTER_CPP
-
 #include <iostream>
 #include <fstream>
 #include "headers/Monster.h"
@@ -17,4 +14,3 @@ Monster::Monster(int) : Creature() {
 		std::getline(monsters, line);
 	}
 }
-#endif
