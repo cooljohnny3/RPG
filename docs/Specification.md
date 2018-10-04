@@ -1,26 +1,24 @@
 # RPG Specification
----
-## Folder Structure:
-### docs:
+### Folder Structure:
+#### docs:
 All documentation pertaining to the project.
-### resources:
+#### resources:
 Any libraries or external files which are not part of the source code.
-### saves:
+#### saves:
 Game saves created when the player saves the game.
-### src:
+#### src:
 Project source code.
-## src/headers:
+### src/headers:
 All header files required for compilation.  All .cpp require a header definition except for small files such as main.cpp.
 All header files must have an include guard with a relevant name.  Ex. foo.h would be #define FOO_H.
-## Formatting:
+### Formatting:
 Curly braces should be inline with the statement they are enclosing.
 Use tabs which are two spaces in size.
-## Project Structure:
-### Class Equipment:
+### Project Structure:
+#### Class Equipment:
 - name : String
 - requirement : int
 - stat : int
----
 + Equipment()
 + Equipment(std::string, int, int)
 + getName() : std::string
@@ -30,20 +28,19 @@ Use tabs which are two spaces in size.
 \# setReq(int r) : void
 \# setStat(int s) : void
 
-### Class Weapon extends Equipment
-### Class Shield extends Equipment
-### Class Helm extends Equipment
-### Class Chest extends Equipment
-### Class Pants extends Equipment
+#### Class Weapon extends Equipment
+#### Class Shield extends Equipment
+#### Class Helm extends Equipment
+#### Class Chest extends Equipment
+#### Class Pants extends Equipment
 
-### Class Creature:
+#### Class Creature:
 - String name
 - level : int
 - int maxHealth
 - int health
 - int attack
 - int defense
----
 + Creature() 
 + Creature(int, int, int) 
 + subHealth(int) : void
@@ -57,7 +54,7 @@ Use tabs which are two spaces in size.
 + getHealth() : int
 + getMaxHealth() : int
 
-### Class Player extends Creature:
+#### Class Player extends Creature:
 - int experience : int
 - weapon : Weapon
 - shield : Shield
@@ -65,7 +62,6 @@ Use tabs which are two spaces in size.
 - body : Body
 - pants : Pants
 - calculateStats() : void
----
 + Player()
 + Player(int, int, int, int, int)
 + getLevel() : int
@@ -82,12 +78,11 @@ Use tabs which are two spaces in size.
 + setBody(Body) :  Body
 + setPants(Pants) :  Pants
 
-### Class Monster extends Creature
+#### Class Monster extends Creature
 
-### Class Dungeon:
+#### Class Dungeon:
 - Monster m
 - int level
----
 + Dungeon()
 + Dungeon(int)
 + ~Dungeon()
@@ -95,9 +90,8 @@ Use tabs which are two spaces in size.
 + combat(Player*) :  int
 + generateMonster(int) : void
 
-### Class World:
+#### Class World:
 - *p : Player
----
 + World();
 + ~World();
 + mainMenu() :  void
@@ -106,9 +100,9 @@ Use tabs which are two spaces in size.
 + save() :  void
 + load() :  void
 
-## Other Notes:
-### Monster Generation:
+### Other Notes:
+#### Monster Generation:
 Dungeon level determines stats by randomly assigning the number of stat points that would be available at that level randomly to attack, defense, and health.  A minimum amount of attack defense and health.
 
-### Leveling:
+#### Leveling:
 Every level the player will be able to allocate ?? skills point(s) in health, attack, or defense
