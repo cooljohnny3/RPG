@@ -1,6 +1,5 @@
 Main goals:
-Documentation
-Clean up
+Create tests for existing code
 Monster generation
 
 Later:
