@@ -1,4 +1,5 @@
 Main goals:
+Understand how to write tests
 Create tests for existing code
 Monster generation
 
