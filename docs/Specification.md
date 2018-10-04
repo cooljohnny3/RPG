@@ -16,17 +16,17 @@ Curly braces should be inline with the statement they are enclosing.
 Use tabs which are two spaces in size.
 ### Project Structure:
 #### Class Equipment:
-- name : String
-- requirement : int
-- stat : int
-+ Equipment()
-+ Equipment(std::string, int, int)
-+ getName() : std::string
-+ getStat() : int
-+ getReq() : int
-\# setName(std::string) : void
-\# setReq(int r) : void
-\# setStat(int s) : void
+\\- name : String
+\\- requirement : int
+\\- stat : int
+\\+ Equipment()
+\\+ Equipment(std::string, int, int)
+\\+ getName() : std::string
+\\+ getStat() : int
+\\+ getReq() : int
+\\# setName(std::string) : void
+\\# setReq(int r) : void
+\\# setStat(int s) : void
 
 #### Class Weapon extends Equipment
 #### Class Shield extends Equipment
@@ -35,70 +35,70 @@ Use tabs which are two spaces in size.
 #### Class Pants extends Equipment
 
 #### Class Creature:
-- String name
-- level : int
-- int maxHealth
-- int health
-- int attack
-- int defense
-+ Creature() 
-+ Creature(int, int, int) 
-+ subHealth(int) : void
-+ addHealth(int) : void 
-\# setName(std::string) : void 
-\# setAttack(int) : void 
-\# setDefense(int) : void 
-+ getAttack() : int
-+ getDefense() : int
-+ getName() : std::string
-+ getHealth() : int
-+ getMaxHealth() : int
+\\- String name
+\\- level : int
+\\- int maxHealth
+\\- int health
+\\- int attack
+\\- int defense
+\\+ Creature() 
+\\+ Creature(int, int, int) 
+\\+ subHealth(int) : void
+\\+ addHealth(int) : void 
+\\# setName(std::string) : void 
+\\# setAttack(int) : void 
+\\# setDefense(int) : void 
+\\+ getAttack() : int
+\\+ getDefense() : int
+\\+ getName() : std::string
+\\+ getHealth() : int
+\\+ getMaxHealth() : int
 
 #### Class Player extends Creature:
-- int experience : int
-- weapon : Weapon
-- shield : Shield
-- helm : Helm
-- body : Body
-- pants : Pants
-- calculateStats() : void
-+ Player()
-+ Player(int, int, int, int, int)
-+ getLevel() : int
-+ getXp() : int
-+ getWep() :  Weapon
-+ getShield() :  Shield
-+ getHelm() :  Helm
-+ getBody() :  Body
-+ getPants() :  Pants
-+ addXp(int) :  void
-+ setWep(Weapon) :  Weapon
-+ setShield(Shield) :  Shield
-+ setHelm(Helm) :  Helm
-+ setBody(Body) :  Body
-+ setPants(Pants) :  Pants
+\\- int experience : int
+\\- weapon : Weapon
+\\- shield : Shield
+\\- helm : Helm
+\\- body : Body
+\\- pants : Pants
+\\- calculateStats() : void
+\\+ Player()
+\\+ Player(int, int, int, int, int)
+\\+ getLevel() : int
+\\+ getXp() : int
+\\+ getWep() :  Weapon
+\\+ getShield() :  Shield
+\\+ getHelm() :  Helm
+\\+ getBody() :  Body
+\\+ getPants() :  Pants
+\\+ addXp(int) :  void
+\\+ setWep(Weapon) :  Weapon
+\\+ setShield(Shield) :  Shield
+\\+ setHelm(Helm) :  Helm
+\\+ setBody(Body) :  Body
+\\+ setPants(Pants) :  Pants
 
 #### Class Monster extends Creature
 
 #### Class Dungeon:
-- Monster m
-- int level
-+ Dungeon()
-+ Dungeon(int)
-+ ~Dungeon()
-+ nextLevel() :  void
-+ combat(Player*) :  int
-+ generateMonster(int) : void
+\\- Monster m
+\\- int level
+\\+ Dungeon()
+\\+ Dungeon(int)
+\\+ ~Dungeon()
+\\+ nextLevel() :  void
+\\+ combat(Player*) :  int
+\\+ generateMonster(int) : void
 
 #### Class World:
-- *p : Player
-+ World();
-+ ~World();
-+ mainMenu() :  void
-+ loadedMenu() : void
-+ enterDung(int) :  void
-+ save() :  void
-+ load() :  void
+\\- *p : Player
+\\+ World();
+\\+ ~World();
+\\+ mainMenu() :  void
+\\+ loadedMenu() : void
+\\+ enterDung(int) :  void
+\\+ save() :  void
+\\+ load() :  void
 
 ### Other Notes:
 #### Monster Generation:
