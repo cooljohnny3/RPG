@@ -1,6 +1,6 @@
 ## RPG Project
 
-Load into your favorite c++ IDE or for Mac/Linux users run `g++ -o RPG src/*.cpp && ./RPG` in the terminal.  
-Windows users figure something out.
+Run `make`
+Windows users will need something like CMake.
 
 Specification and rough TODO list located in docs.
