@@ -1,6 +1,3 @@
-#ifndef DUNGEON_CPP
-#define DUNGEON_CPP
-
 #include <iostream>
 #include <time.h>
 #include <cstdlib>
@@ -81,5 +78,3 @@ int Dungeon::combat(Player* p){
 			std::cout << m.getName() << " misses." << std::endl;
 	}
 }
-
-#endif

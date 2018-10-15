@@ -1,6 +1,3 @@
-#ifndef WORLD_CPP
-#define WORLD_CPP
-
 #include <iostream>
 #include <fstream>
 #include "headers/World.h"
@@ -178,5 +175,3 @@ void World::load(){
 
 	f.close();
 }
-
-#endif

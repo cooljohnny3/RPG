@@ -1,8 +1,12 @@
-main goal:
-loading
+Main goals:
+Documentation
+Clean up
+Monster generation
 
-later (no priority):
+Later:
+Fix saving code
+loading
 change inv so first slots are equipped items
-dungeon level (enter on level already been? or player's level?)
+Select dungeon level
 experience stuff
-make dying in dugeon code better (eventually...)
+make dying in dungeon code better

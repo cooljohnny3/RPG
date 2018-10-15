@@ -1,6 +1,3 @@
-#ifndef PLAYER_CPP
-#define PLAYER_CPP
-
 #include <iostream>
 #include <cmath>
 #include "headers/Player.h"
@@ -88,4 +85,3 @@ Pants Player::setPants(Pants new_pants) { // Returns old pants
 	pants = new_pants;
 	return old_shield;
 }
-#endif

@@ -1,6 +1,3 @@
-#ifndef CREATURE_CPP
-#define CREATURE_CPP
-
 #include <iostream>
 #include "headers/Creature.h"
 
@@ -61,4 +58,3 @@ std::string Creature::getName() { return name; }
 int Creature::getHealth() { return health; }
 
 int Creature::getMaxHealth() {return maxHealth; }
-#endif

@@ -1,6 +1,3 @@
-#ifndef EQUIPMENT_CPP
-#define EQUIPMENT_CPP
-
 #include "headers/Equipment.h"
 
 Equipment::Equipment()
@@ -40,4 +37,3 @@ void Equipment::setReq(int r){
 void Equipment::setStat(int s){
 	stat = s;
 }
-#endif
