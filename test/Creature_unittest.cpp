@@ -14,12 +14,4 @@ TEST(CreatureTest, getHealth) {
   EXPECT_EQ(87, constructedCreature.getHealth());
 }
 
-TEST(CreatureTest, getAttack) {
-  EXPECT_EQ(1, defaultCreature.getAttack());
-  EXPECT_EQ(100, constructedCreature.getAttack());
-}
-
-TEST(CreatureTest, getDefense) {
-  EXPECT_EQ(0, defaultCreature.getDefense());
-  EXPECT_EQ(100, constructedCreature.getDefense());
-}
+/* consider using sutomated testing to test sub/add health */
