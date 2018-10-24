@@ -2,11 +2,11 @@
 #include "gtest/gtest.h"
 
 Player constructedPlayer = Player("Name", 100, 95, 10, 1000);
-Weapon weapon = Weapon();
-Shield shield = Shield();
-Helm helm = Helm();
-Body body = Body();
-Pants pants = Pants();
+Weapon weapon = Weapon("Sword", 1, 1);
+Shield shield = Shield("Sheild", 1, 1);
+Helm helm = Helm("Helm", 1, 1);
+Body body = Body("Body", 1, 1);
+Pants pants = Pants("Pants", 1, 1);
 
 TEST(PlayerTest, getName) {
   EXPECT_EQ("Name", constructedPlayer.getName());
@@ -29,29 +29,26 @@ TEST(PlayerTest, getXp) {
 }
 
 TEST(PlayerTest, getWep) {
+  constructedPlayer.setWep(weapon);
   EXPECT_EQ(weapon, constructedPlayer.getWep());
 }
 
 TEST(PlayerTest, getShield) {
+  constructedPlayer.setShield(shield);
   EXPECT_EQ(shield, constructedPlayer.getShield());
 }
 
 TEST(PlayerTest, getHelm) {
+  constructedPlayer.setHelm(helm);
   EXPECT_EQ(helm, constructedPlayer.getHelm());
 }
 
 TEST(PlayerTest, getBody) {
+  constructedPlayer.setBody(body);
   EXPECT_EQ(body, constructedPlayer.getBody());
 }
 
 TEST(PlayerTest, getPants) {
+  constructedPlayer.setPants(pants);
   EXPECT_EQ(pants, constructedPlayer.getPants());
 }
-
-/*
-	Weapon setWep(Weapon);
-	Shield setShield(Shield);
-	Helm setHelm(Helm);
-	Body setBody(Body);
-	Pants setPants(Pants);
-*/

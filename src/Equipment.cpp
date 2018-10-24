@@ -2,7 +2,7 @@
 
 Equipment::Equipment()
 {
-	name = "";
+	name = "<Empty>";
 	requirement = 0;
 	stat = 0;
 }

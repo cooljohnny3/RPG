@@ -13,18 +13,18 @@ Player::Player() {
   calculateStats();
 }
 
-Player::Player(std::string n, int m, int h, int l, int e) {
-  setName(n);
-  setMaxHealth(m);
-  setHealth(h);
-	level = l;
-	experience = e;
+Player::Player(std::string name, int maxHealth, int health, int level, int experience) {
+  setName(name);
+  setMaxHealth(maxHealth);
+  setHealth(health);
+	this->level = level;
+	this->experience = experience;
   // Set up equipment
   calculateStats();
 }
 
 void Player::calculateStats() {
-  setAttack(weapon.getStat());
+  setAttack(weapon.getStat() + 1);
   int sum = 0;
   sum += getWep().getStat();
 	sum += getShield().getStat();
