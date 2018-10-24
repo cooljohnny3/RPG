@@ -20,25 +20,10 @@ CPPFLAGS += -isystem $(GTEST_DIR)/include
 # Flags passed to the C++ compiler.
 CXXFLAGS += -g -Wall -Wextra -pthread 
 
-# All tests produced by this Makefile.  Remember to add new tests you
-# created to the list.
-TESTS = equipment_unittest player_unittest creature_unittest
-
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
-
-run : build
-	./RPG
-
-build : $(SRC_DIR)/main.cpp Creature.o Equipment.o Player.o Monster.o Body.o Helm.o Pants.o Shield.o Weapon.o Dungeon.o World.o
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o RPG $^
-
-test : $(TESTS)
-
-clean : 
-	rm -f $(TESTS) gtest.a gtest_main.a *.o RPG
 
 # Builds gtest.a and gtest_main.a.
 
@@ -64,44 +49,42 @@ gtest.a : gtest-all.o
 gtest_main.a : gtest-all.o gtest_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
-# Builds a sample test.  A test should link with either gtest.a or
-# gtest_main.a, depending on whether it defines its own main()
-# function.
+EQUIP = Equipment.o Body.o Helm.o Pants.o Shield.o Weapon.o
 
-sample1.o : $(TEST_DIR)/sample1.cc $(TEST_DIR)/sample1.h $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/sample1.cc
+run : build
+	./RPG
 
-sample1_unittest.o : $(TEST_DIR)/sample1_unittest.cc \
-                     $(TEST_DIR)/sample1.h $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/sample1_unittest.cc
+build : $(SRC_DIR)/main.cpp Creature.o Player.o Monster.o $(EQUIP) Dungeon.o World.o
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -o RPG $^
 
-sample1_unittest : sample1.o sample1_unittest.o gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+test : unit_tests
+	./unit_tests
 
-# My Tests
+clean : 
+	rm -f gtest.a gtest_main.a *.o RPG unit_tests
 
 # Equipment
 Equipment.o : $(SRC_DIR)/Equipment.cpp $(SRC_DIR)/headers/Equipment.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Equipment.cpp
 
 # Other Equipment
-Body.o : $(SRC_DIR)/headers/Body.h
+Body.o : $(SRC_DIR)/Body.cpp $(SRC_DIR)/headers/Body.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Body.cpp
 
-Helm.o : $(SRC_DIR)/headers/Helm.h
+Helm.o : $(SRC_DIR)/Helm.cpp $(SRC_DIR)/headers/Helm.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Helm.cpp
 
-Pants.o : $(SRC_DIR)/headers/Pants.h
+Pants.o : $(SRC_DIR)/Pants.cpp $(SRC_DIR)/headers/Pants.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Pants.cpp
 
-Shield.o : $(SRC_DIR)/headers/Shield.h
+Shield.o : $(SRC_DIR)/Shield.cpp $(SRC_DIR)/headers/Shield.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Shield.cpp
 
-Weapon.o : $(SRC_DIR)/headers/Weapon.h
+Weapon.o : $(SRC_DIR)/Weapon.cpp $(SRC_DIR)/headers/Weapon.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Weapon.cpp
 
 #Creature
-Creature.o : $(SRC_DIR)/headers/Creature.h
+Creature.o : $(SRC_DIR)/Creature.cpp $(SRC_DIR)/headers/Creature.h
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SRC_DIR)/Creature.cpp
 
 # Monster
@@ -125,17 +108,15 @@ World.o : $(SRC_DIR)/World.cpp $(SRC_DIR)/headers/World.h
 Equipment_unittest.o : $(TEST_DIR)/Equipment_unittest.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Equipment_unittest.cpp
 
-equipment_unittest : Equipment.o Equipment_unittest.o gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
-
 Creature_unittest.o : $(TEST_DIR)/Creature_unittest.cpp $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Equipment_unittest.cpp
-
-creature_unittest : Creature.o Creature_unittest.o gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Creature_unittest.cpp
 
 Player_unittest.o : $(TEST_DIR)/Player_unittest.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Player_unittest.cpp
 
-player_unittest : Player.o Player_unittest.o gtest_main.a
+# All tests produced by this Makefile.  Remember to add new tests you
+# created to the list.
+TESTS = Equipment_unittest.o Player_unittest.o Creature_unittest.o
+
+unit_tests : $(EQUIP) Creature.o Player.o $(TESTS) gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
