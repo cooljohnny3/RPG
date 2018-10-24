@@ -1,3 +1,5 @@
+all : run
+
 # SYNOPSIS:
 #
 #   make [all]  - makes everything.
@@ -114,9 +116,12 @@ Creature_unittest.o : $(TEST_DIR)/Creature_unittest.cpp $(GTEST_HEADERS)
 Player_unittest.o : $(TEST_DIR)/Player_unittest.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Player_unittest.cpp
 
+Monster_Generation.o : $(TEST_DIR)/Monster_Generation.cpp $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Monster_Generation.cpp
+
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = Equipment_unittest.o Player_unittest.o Creature_unittest.o
+TESTS = Equipment_unittest.o Player_unittest.o Creature_unittest.o Monster_Generation.o
 
-unit_tests : $(EQUIP) Creature.o Player.o $(TESTS) gtest_main.a
+unit_tests : $(EQUIP) Creature.o Player.o Monster.o $(TESTS) gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
