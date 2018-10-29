@@ -1,9 +1,17 @@
 #include "../src/headers/Monster.h"
 #include "gtest/gtest.h"
 
-int main() {
-  for(int i=0; i < 100; i++) {
+bool checkMonster(int level, Monster monster) {
+  int attack = monster.getAttack() - 1;
+  int defence = monster.getDefense();
+  int maxHealth = monster.getMaxHealth() - 10;
+
+  return (attack + defence + maxHealth) == level;
+}
+
+TEST(MonsterGen, automatedGen) {
+  for(int i=0; i < 500; i++) {
     Monster monster = Monster(i);
-    std::cout << "Level " << i+1 << ": " << monster.getName() << " " << monster.getMaxHealth() << " " << monster.getAttack() << " " << monster.getDefense() << std::endl;
+    ASSERT_TRUE(checkMonster(i, monster));
   }
 }
