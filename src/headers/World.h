@@ -14,7 +14,7 @@ public:
 	void load();
 
 private:
-	Player *p;
+	Player* player;
 };
 
 

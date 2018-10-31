@@ -9,7 +9,12 @@ Dungeon::Dungeon(int l){ level = l; }
 
 Dungeon::~Dungeon(){}
 
-void Dungeon::nextLevel(){ level++; }
+void Dungeon::nextLevel(Player* player){
+  level++;
+  if(level > player->getDeepestLevel()) {
+    player->setDeepestLevel(level);
+  }
+}
 
 int Dungeon::combat(Player* player){
   monster = Monster(level);
@@ -19,6 +24,8 @@ int Dungeon::combat(Player* player){
 	std::cout << "You encounter " << monster.getName() << std::endl;
 
 	while (true) {
+    std::cout << "Player: Attack: " << player->getAttack() << " Defence: " << player->getDefense() << " Health: " << player->getHealth() <<std::endl;
+    std::cout << "Monster: Attack: " << monster.getAttack() << " Defence: " << monster.getDefense() << " Health: " << monster.getHealth() <<std::endl;
 		std::cout << "\nHow do you wish to proceed?" << std::endl;
 		std::cout << "1 - Attack" << std::endl;
 		std::cout << "2 - Use Item" << std::endl;
@@ -33,7 +40,7 @@ int Dungeon::combat(Player* player){
 				std::cout << "You did " << damage << " damage to " << monster.getName() << "." << std::endl;
         monster.subHealth(damage);
 
-				if (monster.getHealth() <= 0) {
+				if (monster.getHealth() == monster.getMaxHealth()) {
 					std::cout << "You have slain the " << monster.getName() << std::endl;
 					return 2; //win
 				}
@@ -56,12 +63,12 @@ int Dungeon::combat(Player* player){
 				std::cout << "You fail to escape." << std::endl;
 		}
 
-		int monsterDamage = rand() % monster.getAttack();
+		int monsterDamage = rand() % (monster.getAttack() + 1);
 		if (monsterDamage != 0 && monster.getHealth() > 0) {
 			std::cout << monster.getName() << " did " << monsterDamage << " damage to you." << std::endl;
-      player->subHealth(damage);
+      player->subHealth(monsterDamage);
 
-			if (player->getHealth() <= 0) {
+			if (player->getHealth() == player->getMaxHealth()) {
         std::cout << "You have died" << std::endl;
         return 0;  //dead
       }

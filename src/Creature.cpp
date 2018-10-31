@@ -15,7 +15,10 @@ Creature::Creature(std::string n, int m, int h) {
 }
 
 // Health
-void Creature::subHealth(int num) {	health -= num; }
+void Creature::subHealth(int num) {	
+  health -= num; 
+  if (health <= 0) { health = maxHealth; }
+}
 
 void Creature::addHealth(int num) {
 	if ((health + num) > maxHealth) {
