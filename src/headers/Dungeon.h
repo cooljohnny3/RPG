@@ -15,8 +15,8 @@ public:
 	int combat(Player*); 
 
 private:
-	Monster m;
-	int level; //gets harderwhen higher
+	Monster monster;
+	int level; //gets harder when higher
 };
 
 #endif

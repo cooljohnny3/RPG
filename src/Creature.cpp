@@ -15,16 +15,7 @@ Creature::Creature(std::string n, int m, int h) {
 }
 
 // Health
-void Creature::subHealth(int num) {
-	health -= num;
-	if (health <= 0) {
-		std::cout << "You have died" << std::endl;
-		health = maxHealth;
-	}
-
-	else
-		std::cout << "You have " << health << " HP." << std::endl;	
-}
+void Creature::subHealth(int num) {	health -= num; }
 
 void Creature::addHealth(int num) {
 	if ((health + num) > maxHealth) {
