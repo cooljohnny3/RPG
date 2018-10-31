@@ -8,6 +8,7 @@ Monster::Monster() {
 }
 
 Monster::Monster(int level) {
+  srand(time(NULL));
 	std::fstream monsters("resources/Monsters.dat");
 	std::string name;
   // Number of lines in Monster.dat
