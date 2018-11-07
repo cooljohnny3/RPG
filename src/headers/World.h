@@ -13,6 +13,7 @@ public:
 	void save();
   void saveData(std::string);
 	void load();
+  void loadData(std::string);
 
 private:
 	Player* player;

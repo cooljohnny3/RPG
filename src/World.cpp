@@ -199,3 +199,22 @@ void World::load(){
 
 	f.close();
 }
+
+void World::loadData(std::string name) {
+  std::fstream f;
+	f.open("saves/" + name, std::fstream::out);
+
+	f << player->getName() << std::endl;
+	f << player->getMaxHealth() << std::endl;
+	f << player->getHealth() << std::endl;
+	f << player->getLevel() <<  std::endl;
+  f << player->getDeepestLevel() << std::endl;
+	f << player->getXp() << std::endl;
+  f << player->getWep() << std::endl;
+  f << player->getShield() << std::endl;
+  f << player->getHelm() << std::endl;
+  f << player->getBody() << std::endl;
+  f << player->getPants() << std::endl;
+
+	f.close();
+}

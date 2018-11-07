@@ -45,7 +45,7 @@ bool Equipment::operator==(const Equipment &equip1) const {
   return sameName && sameReq && sameStat;
 }
 
-std::ostream& operator<<(std::ostream &strm, Equipment &E) {
-  std::string returnVal = E.getName() + " " + std::to_string(E.getReq()) + " " + std::to_string(E.getStat());
-  return strm << returnVal;
+std::ostream& operator<<(std::ostream &strm, const Equipment &E) {
+  strm << std::to_string(E.requirement) + " " + std::to_string(E.stat) + " " + E.name;
+  return strm;
 }
