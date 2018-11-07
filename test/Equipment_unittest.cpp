@@ -5,7 +5,7 @@ Equipment emptyEquipment = Equipment();
 Equipment constructedEquipment = Equipment("Example", 10, 8);
 
 TEST(EquipmentTest, getName) {
-  EXPECT_EQ ("", emptyEquipment.getName());
+  EXPECT_EQ ("<Empty>", emptyEquipment.getName());
   EXPECT_EQ ("Example", constructedEquipment.getName());
 }
 

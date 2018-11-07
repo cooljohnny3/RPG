@@ -11,6 +11,7 @@ public:
 	std::string getName();
 	int getStat();
 	int getReq();
+  bool operator ==(const Equipment &equip1) const;
 
 protected:
 	void setName(std::string new_name);

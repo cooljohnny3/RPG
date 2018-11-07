@@ -9,14 +9,14 @@ public:
 	Dungeon();
 	Dungeon(int);
 	~Dungeon();
-	void nextLevel();
+  void nextLevel(Player*);
 	//initiates combat with a monster
 	//return 0 if player dies, 1 if runs away, and 2 if monster dies
 	int combat(Player*); 
 
 private:
-	Monster m;
-	int level; //gets harderwhen higher
+	Monster monster;
+	int level; //gets harder when higher
 };
 
 #endif

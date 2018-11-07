@@ -13,6 +13,7 @@ public:
 	Player();
 	Player(std::string, int, int, int, int);
 	int getLevel();
+  int getDeepestLevel();
 	int getXp();
 	Weapon getWep();
 	Shield getShield();
@@ -20,6 +21,7 @@ public:
 	Body getBody();
 	Pants getPants();
 	void addXp(int);
+  void setDeepestLevel(int);
 	Weapon setWep(Weapon);
 	Shield setShield(Shield);
 	Helm setHelm(Helm);
@@ -27,6 +29,7 @@ public:
 	Pants setPants(Pants);
 
 private:
+  int deepestLevel;
 	int level;
 	int experience;
 	Weapon weapon;

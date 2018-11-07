@@ -21,7 +21,7 @@ void World::mainMenu(){
 
 		switch(choice){
 			case 1:		//New Game
-				p = new Player();
+				player = new Player();
 				loadedMenu();
 				break;
 			case 2:		//Load
@@ -37,10 +37,10 @@ void World::mainMenu(){
 	}			
 }
 
-void World::loadedMenu(){
+void World::loadedMenu() {
 	int choice = 0;
 
-	while (choice != 5 && p->getHealth() > 0) {
+	while (choice != 5 && player->getHealth() > 0) {
 		std::cout << "What would you like to do?" << std::endl;
 		std::cout << "1 - Enter dungeon" << std::endl;
 		std::cout << "2 - Rest Up" << std::endl;
@@ -55,13 +55,13 @@ void World::loadedMenu(){
 				enterDung(0);
 				break;
 			case 2:		//rest
-				p->addHealth(5);
+				player->addHealth(5);
 				std::cout << std::endl;
 				break;
 			case 3:		//status
-				std::cout << "Health: " << p->getHealth() << std::endl;
-				std::cout << "Level: " << p->getLevel() << std::endl;
-				//std::cout << "XP to level: " << p->getXP() << std::endl; //Not implimented
+				std::cout << "Health: " << player->getHealth() << std::endl;
+				std::cout << "Level: " << player->getLevel() << std::endl;
+				//std::cout << "XP to level: " << player->getXP() << std::endl; //Not implimented
 				std::cout << std::endl;
 				break;
 			case 4:		//save
@@ -75,32 +75,38 @@ void World::loadedMenu(){
 	}
 }
 
-void World::enterDung(int difficulty){  //difficulty not yet implimented
-	Dungeon d = Dungeon();
+void World::enterDung(int level) {
+	Dungeon dungeon = Dungeon(level);
 	int status;
-	char choice = 'y';
+	char choice;
 
 	std::cout << "You enter the dungeon..." << std::endl;
-	status = d.combat(p);
 
-	while (status == 2 && choice != 'n' && choice != 'N') {
-		std::cout << "Continue to next level? (Y/N)" << std::endl;
-		std::cin >> choice;
+  while(true) {
+    status = dungeon.combat(player);
 
-		if (choice == 'y' || choice == 'Y') {
-			std::cout << "You continue on...\n" << std::endl;
-			d.nextLevel();
-			status = d.combat(p);
-		}
-	}
+    if (status == 0) { std::cout << "You are revived in town.\n" << std::endl; }
 
-	if (status == 0) {
-		p->subHealth(p->getHealth());
-		std::cout << "You are revived in town.\n" << std::endl;
-	}
+    if (status == 1) { std::cout << "You emerge from the dungeon.\n" << std::endl; }
 
-	else
-		std::cout << "You emerge from the dugeon.\n" << std::endl;
+    else {
+      while(true) {
+        std::cout << "Continue to next level? (Y/N)" << std::endl;
+        std::cin >> choice;
+
+        if (choice == 'y' || choice == 'Y') {
+          std::cout << "\nYou continue on..." << std::endl;
+          dungeon.nextLevel(player);
+          break;
+        }
+
+        else if(choice == 'n' || choice == 'N') {
+          std::cout << "You emerge from the dungeon.\n" << std::endl;
+          return;
+        }
+	    }
+    }
+  }
 }
 
 void World::save(){
@@ -132,11 +138,11 @@ void World::save(){
 
 	f.open("saves/" + name, std::fstream::out);
 
-	f << p->getName() << std::endl;
-	f << p->getMaxHealth() << std::endl;
-	f << p->getHealth() << std::endl;
-	f << p->getLevel() <<  std::endl;
-	f << p->getXp() << std::endl;
+	f << player->getName() << std::endl;
+	f << player->getMaxHealth() << std::endl;
+	f << player->getHealth() << std::endl;
+	f << player->getLevel() <<  std::endl;
+	f << player->getXp() << std::endl;
 
 	f.close();
 }
@@ -172,7 +178,7 @@ void World::load(){
 		f >> stats[i];
 
   // TODO Fix this
-	//p = new Player(stats[0], stats[1], stats[2], stats[3], stats[4]);
+	//player = new Player(stats[0], stats[1], stats[2], stats[3], stats[4]);
 
 	f.close();
 }

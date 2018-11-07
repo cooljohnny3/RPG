@@ -13,18 +13,18 @@ Player::Player() {
   calculateStats();
 }
 
-Player::Player(std::string n, int m, int h, int l, int e) {
-  setName(n);
-  setMaxHealth(m);
-  setHealth(h);
-	level = l;
-	experience = e;
+Player::Player(std::string name, int maxHealth, int health, int level, int experience) {
+  setName(name);
+  setMaxHealth(maxHealth);
+  setHealth(health);
+	this->level = level;
+	this->experience = experience;
   // Set up equipment
   calculateStats();
 }
 
 void Player::calculateStats() {
-  setAttack(weapon.getStat());
+  setAttack(weapon.getStat() + 1);
   int sum = 0;
   sum += getWep().getStat();
 	sum += getShield().getStat();
@@ -44,6 +44,8 @@ void Player::addXp(int xp) {
 }
 
 // Getters
+int Player::getDeepestLevel() { return deepestLevel; }
+
 int Player::getLevel() { return level; }
 
 int Player::getXp() { return experience; }
@@ -59,6 +61,8 @@ Body Player::getBody() { return body; }
 Pants Player::getPants() { return pants; }
 
 // Setters
+void Player::setDeepestLevel(int level) { deepestLevel = level; }
+
 Weapon Player::setWep(Weapon new_weapon) { // Returns old wep
 	Weapon old_weapon = weapon;
 	weapon = new_weapon;
