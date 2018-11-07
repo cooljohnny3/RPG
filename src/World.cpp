@@ -1,7 +1,10 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <vector>
 #include "headers/World.h"
 #include "headers/Dungeon.h"
+#include "headers/Functions.hpp"
 
 World::World(){}
 
@@ -153,8 +156,8 @@ void World::saveData(std::string name) {
 	f << player->getMaxHealth() << std::endl;
 	f << player->getHealth() << std::endl;
 	f << player->getLevel() <<  std::endl;
-  f << player->getDeepestLevel() << std::endl;
 	f << player->getXp() << std::endl;
+  f << player->getDeepestLevel() << std::endl;
   f << player->getWep() << std::endl;
   f << player->getShield() << std::endl;
   f << player->getHelm() << std::endl;
@@ -167,54 +170,48 @@ void World::saveData(std::string name) {
 void World::load(){
 	std::string name;
 	std::fstream f;
-	char choice;
-	bool valid = true;
-	int stats[5] = {};
 
-	while(valid){
+  // Loops until a valid file has been selected
+	do {
 		std::cout << "Enter the name of the file to load: ";
 		std::cin >> name;
 
 		f.open("saves/" + name, std::fstream::in);
 
+    // Checks to see if file exists
 		if(f.peek() != std::ifstream::traits_type::eof()){
-			std::cout << "A file with that name already exists, would you like to overwrite it? (Y/N)";
-			std::cin >> choice;
-			if(choice == 'Y' || choice == 'y')
-				valid = false;
-
-			else
-				f.close();	
+      f.close();
 		}
-		else
-			valid = false;	
-	}
-	f.open("saves/" + name, std::fstream::in);
-
-	for(int i = 0; i < 5; i++)
-		f >> stats[i];
-
-  // TODO Fix this
-	//player = new Player(stats[0], stats[1], stats[2], stats[3], stats[4]);
-
-	f.close();
+		else {
+			std::cout << "A file with that name does not exist.  Please enter a valid name." << std::endl;
+    }
+	} while(f.is_open());
+  loadData(name);
 }
 
+// Requires a valid save file name
 void World::loadData(std::string name) {
   std::fstream f;
-	f.open("saves/" + name, std::fstream::out);
+  std::string line;
+  std::vector<std::string> stats;
+  std::vector<std::string> temp;
 
-	f << player->getName() << std::endl;
-	f << player->getMaxHealth() << std::endl;
-	f << player->getHealth() << std::endl;
-	f << player->getLevel() <<  std::endl;
-  f << player->getDeepestLevel() << std::endl;
-	f << player->getXp() << std::endl;
-  f << player->getWep() << std::endl;
-  f << player->getShield() << std::endl;
-  f << player->getHelm() << std::endl;
-  f << player->getBody() << std::endl;
-  f << player->getPants() << std::endl;
+	f.open("saves/" + name, std::fstream::in);
+
+	while(std::getline(f, line)) {
+    temp = split(line, ' ');
+    stats.reserve(stats.size() + temp.size()); // preallocate memory
+    stats.insert(stats.end(), temp.begin(), temp.end());
+  }
+
+  player = new Player(stats[0], std::stoi(stats[1]), std::stoi(stats[2]), std::stoi(stats[3]), std::stoi(stats[4]));
+  player->setDeepestLevel(std::stoi(stats[5]));
+  player->setWep(Weapon(stats[6], std::stoi(stats[7]), std::stoi(stats[8])));
+  player->setShield(Shield(stats[9], std::stoi(stats[10]), std::stoi(stats[11])));
+  player->setHelm(Helm(stats[12], std::stoi(stats[13]), std::stoi(stats[14])));
+  player->setBody(Body(stats[15], std::stoi(stats[16]), std::stoi(stats[17])));
+  player->setPants(Pants(stats[18], std::stoi(stats[19]), std::stoi(stats[20])));
+  player->calculateStats();
 
 	f.close();
 }

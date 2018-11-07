@@ -46,6 +46,6 @@ bool Equipment::operator==(const Equipment &equip1) const {
 }
 
 std::ostream& operator<<(std::ostream &strm, const Equipment &E) {
-  strm << std::to_string(E.requirement) + " " + std::to_string(E.stat) + " " + E.name;
+  strm << E.name + " " + std::to_string(E.requirement) + " " + std::to_string(E.stat);
   return strm;
 }

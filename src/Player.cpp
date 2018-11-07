@@ -9,7 +9,7 @@ Player::Player() {
   setName(temp);
   level = 1;
 	experience = 0;
-	weapon = Weapon("Wooden Sword", 1, 5);
+	weapon = Weapon("Wooden_Sword", 1, 5);
   calculateStats();
 }
 
@@ -19,8 +19,6 @@ Player::Player(std::string name, int maxHealth, int health, int level, int exper
   setHealth(health);
 	this->level = level;
 	this->experience = experience;
-  // Set up equipment
-  calculateStats();
 }
 
 void Player::calculateStats() {
