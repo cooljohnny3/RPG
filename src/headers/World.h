@@ -11,6 +11,7 @@ public:
 	void loadedMenu();
 	void enterDung(int);
 	void save();
+  void saveData(std::string);
 	void load();
 
 private:

@@ -22,5 +22,6 @@ private:
 	std::string name;
 	int requirement;
 	int stat;
+  friend std::ostream& operator<<(std::ostream &strm, const Equipment&);
 };
 #endif
