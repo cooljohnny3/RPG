@@ -44,6 +44,8 @@ void Player::addXp(int xp) {
 }
 
 // Getters
+int Player::getDeepestLevel() { return deepestLevel; }
+
 int Player::getLevel() { return level; }
 
 int Player::getXp() { return experience; }
@@ -59,6 +61,8 @@ Body Player::getBody() { return body; }
 Pants Player::getPants() { return pants; }
 
 // Setters
+void Player::setDeepestLevel(int level) { deepestLevel = level; }
+
 Weapon Player::setWep(Weapon new_weapon) { // Returns old wep
 	Weapon old_weapon = weapon;
 	weapon = new_weapon;

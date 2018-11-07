@@ -8,9 +8,12 @@ Monster::Monster() {
 }
 
 Monster::Monster(int level) {
+  srand(time(NULL));
 	std::fstream monsters("resources/Monsters.dat");
 	std::string name;
-  int lineNumber = rand() % 10 + 1;
+  // Number of lines in Monster.dat
+  int numOfLines = 11;
+  int lineNumber = rand() % numOfLines + 1;
 	if (monsters.is_open()) {
     GotoLine(monsters, lineNumber);
     monsters >> name;
