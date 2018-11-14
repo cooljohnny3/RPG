@@ -14,6 +14,9 @@ GTEST_DIR = ./test/googletest
 TEST_DIR = ./test
 SRC_DIR = ./src
 
+# Rapid Check path
+RAPIDCHECK_DIR = ./test/googletest
+
 # Flags passed to the preprocessor.
 # Set Google Test's header directory as a system directory, such that
 # the compiler doesn't generate warnings in Google Test headers.
