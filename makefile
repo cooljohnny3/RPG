@@ -60,12 +60,12 @@ unit_test : unit_tests
 prop_test : prop_tests
 	./prop_tests
 
-clean_cmake : 
+clean_rapidcheck : 
 	rm -rf $(RAPIDCHECK_DIR)/CMakeFiles $(RAPIDCHECK_DIR)/cmake_install.cmake \
 	$(RAPIDCHECK_DIR)/CMakeCache.tst $(RAPIDCHECK_DIR)/Makefile \
-	$(RAPIDCHECK_DIR)/CMakeCache.txt $(RAPIDCHECK_DIR)/rapidcheckConfig.cmake
+	$(RAPIDCHECK_DIR)/CMakeCache.txt $(RAPIDCHECK_DIR)/librapidcheck.a
 
-clean : 
+clean : clean_rapidcheck
 	rm -f gtest.a gtest_main.a *.o RPG unit_tests
 
 
@@ -131,13 +131,13 @@ unit_tests : $(EQUIP) Creature.o Player.o Monster.o $(UNIT_TESTS) gtest_main.a
 # Start Property Tests
 RAPIDCHECK_INCLUDE = -isystem $(RAPIDCHECK_DIR)/include
 
-World_proptest.o : $(TEST_DIR)/Proptest.cpp
+Proptest.o : $(TEST_DIR)/Proptest.cpp
 	$(CXX) $(RAPIDCHECK_INCLUDE) $(CXXFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Proptest.cpp 
 
 librapidcheck.a : $(RAPIDCHECK_DIR)/CMakeLists.txt
-	cd $(RAPIDCHECK_DIR) && cmake CMakeLists.txt && make && cd ../..
+	cd $(RAPIDCHECK_DIR) && cmake CMakeLists.txt && make
 
-PROP_TESTS = World_proptest.o
+PROP_TESTS = Proptest.o
 
 prop_tests : $(EQUIP) Creature.o Player.o Monster.o $(PROP_TESTS) librapidcheck.a
-	$(CXX) -lpthread $^ -o $@
+	$(CXX) -lpthread $(EQUIP) Creature.o Player.o Monster.o $(PROP_TESTS) $(RAPIDCHECK_DIR)/librapidcheck.a -o $@
