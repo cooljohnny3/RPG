@@ -48,10 +48,10 @@ RM = /usr/local/Cellar/cmake/3.12.4/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/john/Downloads/rapidcheck
+CMAKE_SOURCE_DIR = /Users/john/Documents/RPG/test/rapidcheck
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/john/Downloads/rapidcheck
+CMAKE_BINARY_DIR = /Users/john/Documents/RPG/test/rapidcheck
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,9 +126,9 @@ install/local/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/john/Downloads/rapidcheck/CMakeFiles /Users/john/Downloads/rapidcheck/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/john/Documents/RPG/test/rapidcheck/CMakeFiles /Users/john/Documents/RPG/test/rapidcheck/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/john/Downloads/rapidcheck/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/john/Documents/RPG/test/rapidcheck/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

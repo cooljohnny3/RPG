@@ -1,4 +1,4 @@
-# Install script for directory: /Users/john/Downloads/rapidcheck
+# Install script for directory: /Users/john/Documents/RPG/test/rapidcheck
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,7 +33,7 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/Users/john/Downloads/rapidcheck/librapidcheck.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/Users/john/Documents/RPG/test/rapidcheck/librapidcheck.a")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librapidcheck.a" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librapidcheck.a")
     execute_process(COMMAND "/Library/Developer/CommandLineTools/usr/bin/ranlib" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/librapidcheck.a")
@@ -41,14 +41,14 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/Users/john/Downloads/rapidcheck/include/")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/Users/john/Documents/RPG/test/rapidcheck/include/")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/rapidcheck/cmake/rapidcheckConfig.cmake")
     file(DIFFERENT EXPORT_FILE_CHANGED FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/rapidcheck/cmake/rapidcheckConfig.cmake"
-         "/Users/john/Downloads/rapidcheck/CMakeFiles/Export/share/rapidcheck/cmake/rapidcheckConfig.cmake")
+         "/Users/john/Documents/RPG/test/rapidcheck/CMakeFiles/Export/share/rapidcheck/cmake/rapidcheckConfig.cmake")
     if(EXPORT_FILE_CHANGED)
       file(GLOB OLD_CONFIG_FILES "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/share/rapidcheck/cmake/rapidcheckConfig-*.cmake")
       if(OLD_CONFIG_FILES)
@@ -57,16 +57,16 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
       endif()
     endif()
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/rapidcheck/cmake" TYPE FILE FILES "/Users/john/Downloads/rapidcheck/CMakeFiles/Export/share/rapidcheck/cmake/rapidcheckConfig.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/rapidcheck/cmake" TYPE FILE FILES "/Users/john/Documents/RPG/test/rapidcheck/CMakeFiles/Export/share/rapidcheck/cmake/rapidcheckConfig.cmake")
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^()$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/rapidcheck/cmake" TYPE FILE FILES "/Users/john/Downloads/rapidcheck/CMakeFiles/Export/share/rapidcheck/cmake/rapidcheckConfig-noconfig.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/rapidcheck/cmake" TYPE FILE FILES "/Users/john/Documents/RPG/test/rapidcheck/CMakeFiles/Export/share/rapidcheck/cmake/rapidcheckConfig-noconfig.cmake")
   endif()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/john/Downloads/rapidcheck/ext/cmake_install.cmake")
-  include("/Users/john/Downloads/rapidcheck/extras/cmake_install.cmake")
+  include("/Users/john/Documents/RPG/test/rapidcheck/ext/cmake_install.cmake")
+  include("/Users/john/Documents/RPG/test/rapidcheck/extras/cmake_install.cmake")
 
 endif()
 
@@ -78,5 +78,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/john/Downloads/rapidcheck/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/john/Documents/RPG/test/rapidcheck/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

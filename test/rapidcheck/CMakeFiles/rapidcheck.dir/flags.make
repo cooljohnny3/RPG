@@ -6,7 +6,7 @@ CXX_FLAGS =  -Wall -Werror -Wno-missing-braces -Wno-unused-command-line-argument
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/john/Downloads/rapidcheck/include 
+CXX_INCLUDES = -I/Users/john/Documents/RPG/test/rapidcheck/include 
 
 # Custom flags: CMakeFiles/rapidcheck.dir/src/Random.cpp.o_FLAGS =  -O3
 

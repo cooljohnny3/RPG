@@ -48,10 +48,10 @@ RM = /usr/local/Cellar/cmake/3.12.4/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/john/Downloads/rapidcheck
+CMAKE_SOURCE_DIR = /Users/john/Documents/RPG/test/rapidcheck
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/john/Downloads/rapidcheck
+CMAKE_BINARY_DIR = /Users/john/Documents/RPG/test/rapidcheck
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,14 +126,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/john/Downloads/rapidcheck && $(CMAKE_COMMAND) -E cmake_progress_start /Users/john/Downloads/rapidcheck/CMakeFiles /Users/john/Downloads/rapidcheck/ext/CMakeFiles/progress.marks
-	cd /Users/john/Downloads/rapidcheck && $(MAKE) -f CMakeFiles/Makefile2 ext/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/john/Downloads/rapidcheck/CMakeFiles 0
+	cd /Users/john/Documents/RPG/test/rapidcheck && $(CMAKE_COMMAND) -E cmake_progress_start /Users/john/Documents/RPG/test/rapidcheck/CMakeFiles /Users/john/Documents/RPG/test/rapidcheck/ext/CMakeFiles/progress.marks
+	cd /Users/john/Documents/RPG/test/rapidcheck && $(MAKE) -f CMakeFiles/Makefile2 ext/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/john/Documents/RPG/test/rapidcheck/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/john/Downloads/rapidcheck && $(MAKE) -f CMakeFiles/Makefile2 ext/clean
+	cd /Users/john/Documents/RPG/test/rapidcheck && $(MAKE) -f CMakeFiles/Makefile2 ext/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,17 +143,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/john/Downloads/rapidcheck && $(MAKE) -f CMakeFiles/Makefile2 ext/preinstall
+	cd /Users/john/Documents/RPG/test/rapidcheck && $(MAKE) -f CMakeFiles/Makefile2 ext/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/john/Downloads/rapidcheck && $(MAKE) -f CMakeFiles/Makefile2 ext/preinstall
+	cd /Users/john/Documents/RPG/test/rapidcheck && $(MAKE) -f CMakeFiles/Makefile2 ext/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/john/Downloads/rapidcheck && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/john/Documents/RPG/test/rapidcheck && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -179,6 +179,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/john/Downloads/rapidcheck && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/john/Documents/RPG/test/rapidcheck && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

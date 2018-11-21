@@ -1,5 +1,8 @@
 all : run
 
+# Flags passed to the C++ compiler.
+CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11
+
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.
 GTEST_DIR = ./test/googletest
@@ -12,10 +15,7 @@ SRC_DIR = ./src
 
 # Set Google Test's header directory as a system directory, such that
 # the compiler doesn't generate warnings in Google Test headers.
-CPPFLAGS += -isystem $(GTEST_DIR)/include
-
-# Flags passed to the C++ compiler.
-CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11
+GTEST_INCLUDE += -isystem $(GTEST_DIR)/include
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
@@ -33,11 +33,11 @@ GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 # conservative and not optimized.  This is fine as Google Test
 # compiles fast and for ordinary users its source rarely changes.
 gtest-all.o : $(GTEST_SRCS_)
-	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR) $(CXXFLAGS) -c \
+	$(CXX) $(GTEST_INCLUDE) -I$(GTEST_DIR) $(CXXFLAGS) -c \
             $(GTEST_DIR)/src/gtest-all.cc
 
 gtest_main.o : $(GTEST_SRCS_)
-	$(CXX) $(CPPFLAGS) -I$(GTEST_DIR) $(CXXFLAGS) -c \
+	$(CXX) $(GTEST_INCLUDE) -I$(GTEST_DIR) $(CXXFLAGS) -c \
             $(GTEST_DIR)/src/gtest_main.cc
 
 gtest.a : gtest-all.o
@@ -106,27 +106,29 @@ World.o : $(SRC_DIR)/World.cpp $(SRC_DIR)/headers/World.h
 
 # Start Unit Tests
 Equipment_unittest.o : $(TEST_DIR)/Equipment_unittest.cpp $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Equipment_unittest.cpp
+	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -c $(TEST_DIR)/Equipment_unittest.cpp
 
 Creature_unittest.o : $(TEST_DIR)/Creature_unittest.cpp $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Creature_unittest.cpp
+	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -c $(TEST_DIR)/Creature_unittest.cpp
 
 Player_unittest.o : $(TEST_DIR)/Player_unittest.cpp $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Player_unittest.cpp
+	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -c $(TEST_DIR)/Player_unittest.cpp
 
 Monster_Generation.o : $(TEST_DIR)/Monster_Generation.cpp $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/Monster_Generation.cpp
+	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -c $(TEST_DIR)/Monster_Generation.cpp
 
 UNIT_TESTS = Equipment_unittest.o Player_unittest.o Creature_unittest.o Monster_Generation.o
 
 unit_tests : $(EQUIP) Creature.o Player.o Monster.o $(UNIT_TESTS) gtest_main.a
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -lpthread $^ -o $@
 
 # Start Property Tests
+RAPIDCHECK_INCLUDE = -isystem $(RAPIDCHECK_DIR)/include
+
 World_proptest.o : $(TEST_DIR)/World_proptest.cpp
-	$(CXX)  $(CXXFLAGS) -c $(TEST_DIR)/World_proptest.cpp 
+	$(CXX) $(RAPIDCHECK_INCLUDE) $(CXXFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/World_proptest.cpp 
 
 PROP_TESTS = World_proptest.o
 
 prop_tests : $(EQUIP) Creature.o Player.o Monster.o $(PROP_TESTS) $(RAPIDCHECK_DIR)/librapidcheck.a
-	$(CXX) $(CXXFLAGS) -lpthread $^ -o $@
+	$(CXX) -lpthread $^ -o $@

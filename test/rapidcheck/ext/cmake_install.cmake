@@ -1,4 +1,4 @@
-# Install script for directory: /Users/john/Downloads/rapidcheck/ext
+# Install script for directory: /Users/john/Documents/RPG/test/rapidcheck/ext
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
