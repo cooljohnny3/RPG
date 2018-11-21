@@ -36,7 +36,7 @@ void Monster::generate(int level) {
   setDefense(stats[2]);
 }
 
-std::fstream& Monster::GotoLine(std::fstream& file, int num){
+std::fstream& Monster::GotoLine(std::fstream& file, int num) const{
     file.seekg(std::ios::beg);
     for(int i=0; i < num - 1; i++){
         file.ignore(std::numeric_limits<std::streamsize>::max(),'\n');

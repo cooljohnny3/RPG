@@ -8,9 +8,9 @@ class Equipment
 public:
 	Equipment();
 	Equipment(std::string n, int r, int s);
-	std::string getName();
-	int getStat();
-	int getReq();
+	std::string getName() const;
+	int getStat() const;
+	int getReq() const;
   bool operator ==(const Equipment &equip1) const;
 
 protected:

@@ -12,6 +12,6 @@ public:
 
 private:
   void generate(int);
-  std::fstream& GotoLine(std::fstream& file, int num);
+  std::fstream& GotoLine(std::fstream& file, int num) const;
 };
 #endif
