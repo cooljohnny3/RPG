@@ -1,22 +1,22 @@
 #include <iostream>
 #include <time.h>
 #include <cstdlib>
-#include "headers/Dungeon.h"
+#include "Dungeon.h"
 
-Dungeon::Dungeon(){	level = 1; }
+Dungeon::Dungeon() {	level = 1; }
 
-Dungeon::Dungeon(int l){ level = l; }
+Dungeon::Dungeon(int l) { level = l; }
 
-Dungeon::~Dungeon(){}
+Dungeon::~Dungeon() {}
 
-void Dungeon::nextLevel(){
+void Dungeon::nextLevel() {
   level++;
   if(level > player->getDeepestLevel()) {
     player->setDeepestLevel(level);
   }
 }
 
-int Dungeon::combat(){
+int Dungeon::combat() {
   monster = Monster(level);
 	int damage, choice = 0;
 	srand(time(NULL));
@@ -24,8 +24,8 @@ int Dungeon::combat(){
 	std::cout << "You encounter " << monster.getName() << std::endl;
 
 	while (true) {
-    std::cout << "Player: Attack: " << player->getAttack() << " Defence: " << player->getDefense() << " Health: " << player->getHealth() <<std::endl;
-    std::cout << "Monster: Attack: " << monster.getAttack() << " Defence: " << monster.getDefense() << " Health: " << monster.getHealth() <<std::endl;
+    // std::cout << "Player: Attack: " << player->getAttack() << " Defence: " << player->getDefense() << " Health: " << player->getHealth() <<std::endl;
+    // std::cout << "Monster: Attack: " << monster.getAttack() << " Defence: " << monster.getDefense() << " Health: " << monster.getHealth() <<std::endl;
 		std::cout << "\nHow do you wish to proceed?" << std::endl;
 		std::cout << "1 - Attack" << std::endl;
 		std::cout << "2 - Use Item" << std::endl;
@@ -93,3 +93,5 @@ int Dungeon::monsterDamage(int damage) {
     std::cout << monster.getName() << " misses." << std::endl;
   }
 }
+
+Monster Dungeon::getMonster() { return monster; }

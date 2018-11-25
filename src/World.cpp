@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
-#include "headers/World.h"
-#include "headers/Dungeon.h"
+#include "World.h"
+#include "Dungeon.h"
 
 World::World(){}
 

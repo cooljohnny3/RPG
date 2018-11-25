@@ -1,4 +1,4 @@
-#include "headers/Shield.h"
+#include "Shield.h"
 
 Shield::Shield() : Equipment() {}
 

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include "headers/Player.h"
+#include "Player.h"
 
 Player::Player() {
   std::string temp;

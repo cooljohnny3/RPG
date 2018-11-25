@@ -1,4 +1,4 @@
-#include "headers/Body.h"
+#include "Body.h"
 
 Body::Body() : Equipment() {}
 

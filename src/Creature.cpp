@@ -1,5 +1,5 @@
 #include <iostream>
-#include "headers/Creature.h"
+#include "Creature.h"
 
 Creature::Creature() {
 	maxHealth = 10;  // TODO make way to increase health

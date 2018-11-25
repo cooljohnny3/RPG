@@ -1,7 +1,7 @@
 all : run
 
 # Flags passed to the C++ compiler.
-CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11
+CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11 -isystem $(SRC_DIR)/headers
 
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.

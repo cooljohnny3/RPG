@@ -1,4 +1,4 @@
-#include "headers/Helm.h"
+#include "Helm.h"
 
 Helm::Helm() : Equipment() {}
 
