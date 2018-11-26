@@ -76,7 +76,7 @@ void World::loadedMenu() {
 }
 
 void World::enterDung(int level) {
-	Dungeon dungeon = Dungeon(level);
+	Dungeon dungeon = Dungeon(player, level);
 	int status;
 	char choice;
 

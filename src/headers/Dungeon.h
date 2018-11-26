@@ -7,7 +7,7 @@
 class Dungeon {
 public:
 	Dungeon();
-	Dungeon(int);
+	Dungeon(Player*, int);
 	~Dungeon();
   void nextLevel();
 	//initiates combat with a monster
@@ -16,6 +16,7 @@ public:
   int playerDamage(int);
   int monsterDamage(int);
   Monster getMonster();
+  Player getPlayer();
 
 private:
 	Monster monster;

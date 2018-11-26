@@ -5,7 +5,10 @@
 
 Dungeon::Dungeon() {	level = 1; }
 
-Dungeon::Dungeon(int l) { level = l; }
+Dungeon::Dungeon(Player* player, int l) { 
+  this->player = player;
+  level = l; 
+}
 
 Dungeon::~Dungeon() {}
 
@@ -95,3 +98,5 @@ int Dungeon::monsterDamage(int damage) {
 }
 
 Monster Dungeon::getMonster() { return monster; }
+
+Player Dungeon::getPlayer() { return *player; }
