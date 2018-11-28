@@ -7,7 +7,7 @@
 class Dungeon {
 public:
 	Dungeon();
-	Dungeon(Player*, int);
+	Dungeon(Player, int);
 	~Dungeon();
   void nextLevel();
 	//initiates combat with a monster
@@ -20,7 +20,7 @@ public:
 
 private:
 	Monster monster;
-  Player* player;
+  Player player;
 	int level; //gets harder when higher
 };
 

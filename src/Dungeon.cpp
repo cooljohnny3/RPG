@@ -5,17 +5,17 @@
 
 Dungeon::Dungeon() {	level = 1; }
 
-Dungeon::Dungeon(Player* player, int l) { 
-  this->player = player;
-  level = l; 
+Dungeon::Dungeon(Player player, int l) { 
+  Dungeon::player = player;
+  level = l;
 }
 
 Dungeon::~Dungeon() {}
 
 void Dungeon::nextLevel() {
   level++;
-  if(level > player->getDeepestLevel()) {
-    player->setDeepestLevel(level);
+  if(level > player.getDeepestLevel()) {
+    player.setDeepestLevel(level);
   }
 }
 
@@ -27,7 +27,7 @@ int Dungeon::combat() {
 	std::cout << "You encounter " << monster.getName() << std::endl;
 
 	while (true) {
-    // std::cout << "Player: Attack: " << player->getAttack() << " Defence: " << player->getDefense() << " Health: " << player->getHealth() <<std::endl;
+    // std::cout << "Player: Attack: " << player.getAttack() << " Defence: " << player.getDefense() << " Health: " << player.getHealth() <<std::endl;
     // std::cout << "Monster: Attack: " << monster.getAttack() << " Defence: " << monster.getDefense() << " Health: " << monster.getHealth() <<std::endl;
 		std::cout << "\nHow do you wish to proceed?" << std::endl;
 		std::cout << "1 - Attack" << std::endl;
@@ -37,7 +37,7 @@ int Dungeon::combat() {
 		std::cout << std::endl;
 
 		if (choice == 1) { //Attack
-			damage = rand() % player->getWep().getStat();
+			damage = rand() % player.getWep().getStat();
 			if(playerDamage(damage) == 2) {
         return 2;
       }
@@ -84,9 +84,9 @@ int Dungeon::playerDamage(int damage) {
 int Dungeon::monsterDamage(int damage) {
   if (damage != 0 && monster.getHealth() > 0) {
     std::cout << monster.getName() << " did " << damage << " damage to you." << std::endl;
-    player->subHealth(damage);
+    player.subHealth(damage);
 
-    if (player->getHealth() == player->getMaxHealth()) {
+    if (player.getHealth() == player.getMaxHealth()) {
       std::cout << "You have died" << std::endl;
       return 0;  //dead
     }
@@ -99,4 +99,4 @@ int Dungeon::monsterDamage(int damage) {
 
 Monster Dungeon::getMonster() { return monster; }
 
-Player Dungeon::getPlayer() { return *player; }
+Player Dungeon::getPlayer() { return player; }

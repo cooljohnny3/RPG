@@ -14,7 +14,7 @@ public:
 	void load() const;
 
 private:
-	Player* player;
+	Player player;
   void saveData(std::string) const;
 
 };

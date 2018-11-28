@@ -1,7 +1,5 @@
 #include <rapidcheck.h>
 
-#include <vector>
-#include <algorithm>
 #include "Dungeon.h"
 
 // Definitions for generators
@@ -11,7 +9,7 @@ namespace rc {
   struct Arbitrary<Player> {
     static Gen<Player> arbitrary() {
       // Think supposed to be pointer but works without?
-      return gen::makeUnique<Player>(
+      return gen::construct<Player>(
         gen::arbitrary<std::string>(),
         gen::inRange(0, 100),
         gen::inRange(0, 100),
@@ -32,14 +30,6 @@ namespace rc {
 } // namespace rc
 
 int main() {
-  rc::check("double reversal yields the original value",
-            [](const std::vector<int> &l0) {
-              auto l1 = l0;
-              std::reverse(begin(l1), end(l1));
-              std::reverse(begin(l1), end(l1));
-              RC_ASSERT(l0 == l1);
-            });
-
   rc::check("monster health should remain unchanged",
             [](Dungeon dung) {
               int initialHealth = dung.getMonster().getHealth();

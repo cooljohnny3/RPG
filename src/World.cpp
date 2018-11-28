@@ -21,7 +21,7 @@ void World::mainMenu(){
 
 		switch(choice){
 			case 1:		//New Game
-				player = new Player();
+				player = Player();
 				loadedMenu();
 				break;
 			case 2:		//Load
@@ -40,7 +40,7 @@ void World::mainMenu(){
 void World::loadedMenu() {
 	int choice = 0;
 
-	while (choice != 5 && player->getHealth() > 0) {
+	while (choice != 5 && player.getHealth() > 0) {
 		std::cout << "What would you like to do?" << std::endl;
 		std::cout << "1 - Enter dungeon" << std::endl;
 		std::cout << "2 - Rest Up" << std::endl;
@@ -55,13 +55,13 @@ void World::loadedMenu() {
 				enterDung(0);
 				break;
 			case 2:		//rest
-				player->addHealth(5);
+				player.addHealth(5);
 				std::cout << std::endl;
 				break;
 			case 3:		//status
-				std::cout << "Health: " << player->getHealth() << std::endl;
-				std::cout << "Level: " << player->getLevel() << std::endl;
-				//std::cout << "XP to level: " << player->getXP() << std::endl; //Not implimented
+				std::cout << "Health: " << player.getHealth() << std::endl;
+				std::cout << "Level: " << player.getLevel() << std::endl;
+				//std::cout << "XP to level: " << player.getXP() << std::endl; //Not implimented
 				std::cout << std::endl;
 				break;
 			case 4:		//save
@@ -76,7 +76,7 @@ void World::loadedMenu() {
 }
 
 void World::enterDung(int level) {
-	Dungeon dungeon = Dungeon(player, level);
+	Dungeon dungeon = Dungeon(level);
 	int status;
 	char choice;
 
@@ -150,17 +150,17 @@ void World::saveData(std::string name) const {
   std::fstream f;
 	f.open("saves/" + name, std::fstream::out);
 
-	f << player->getName() << std::endl;
-	f << player->getMaxHealth() << std::endl;
-	f << player->getHealth() << std::endl;
-	f << player->getLevel() <<  std::endl;
-  f << player->getDeepestLevel() << std::endl;
-	f << player->getXp() << std::endl;
-  f << player->getWep() << std::endl;
-  f << player->getShield() << std::endl;
-  f << player->getHelm() << std::endl;
-  f << player->getBody() << std::endl;
-  f << player->getPants() << std::endl;
+	f << player.getName() << std::endl;
+	f << player.getMaxHealth() << std::endl;
+	f << player.getHealth() << std::endl;
+	f << player.getLevel() <<  std::endl;
+  f << player.getDeepestLevel() << std::endl;
+	f << player.getXp() << std::endl;
+  f << player.getWep() << std::endl;
+  f << player.getShield() << std::endl;
+  f << player.getHelm() << std::endl;
+  f << player.getBody() << std::endl;
+  f << player.getPants() << std::endl;
 
 	f.close();
 }
