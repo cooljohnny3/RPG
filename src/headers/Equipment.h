@@ -12,6 +12,7 @@ public:
 	int getStat() const;
 	int getReq() const;
   bool operator ==(const Equipment &equip1) const;
+  friend std::ostream& operator<<(std::ostream&, const Equipment&);
 
 protected:
 	void setName(std::string new_name);
@@ -22,6 +23,5 @@ private:
 	std::string name;
 	int requirement;
 	int stat;
-  friend std::ostream& operator<<(std::ostream &strm, const Equipment&);
 };
 #endif
