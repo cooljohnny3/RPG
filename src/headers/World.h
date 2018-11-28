@@ -18,6 +18,4 @@ private:
   void saveData(std::string) const;
 
 };
-
-
 #endif
