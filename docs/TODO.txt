@@ -1,6 +1,4 @@
 Main goals:
-Fix saving code
-loading
 Create tests for existing code
 
 Later:

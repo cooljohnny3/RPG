@@ -112,7 +112,7 @@ void World::enterDung(int level) {
   }
 }
 
-void World::save(){
+void World::save() const{
 	std::string name;
 	std::fstream f;
 	bool valid = true;
@@ -148,7 +148,7 @@ void World::save(){
   saveData(name);
 }
 
-void World::saveData(std::string name) {
+void World::saveData(std::string name) const {
   std::fstream f;
 	f.open("saves/" + name, std::fstream::out);
 
@@ -167,7 +167,7 @@ void World::saveData(std::string name) {
 	f.close();
 }
 
-void World::load(){
+void World::load() const{
 	std::string name;
 	std::fstream f;
 

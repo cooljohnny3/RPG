@@ -14,15 +14,15 @@ Equipment::Equipment(std::string n, int r, int s) {
 }
 
 //Getters
-std::string Equipment::getName(){
+std::string Equipment::getName() const{
 	return name;
 }
 
-int Equipment::getStat(){
+int Equipment::getStat() const{
 	return stat;
 }
 
-int Equipment::getReq(){
+int Equipment::getReq() const{
 	return requirement;
 }
 
@@ -46,6 +46,6 @@ bool Equipment::operator==(const Equipment &equip1) const {
 }
 
 std::ostream& operator<<(std::ostream &strm, const Equipment &E) {
-  strm << E.name + " " + std::to_string(E.requirement) + " " + std::to_string(E.stat);
-  return strm;
+  std::string returnVal = E.getName() + " " + std::to_string(E.getReq()) + " " + std::to_string(E.getStat());
+  return strm << returnVal;
 }

@@ -7,13 +7,13 @@ class Creature {
   public:
   Creature();
   Creature(std::string, int, int);
-  std::string getName();
-  int getMaxHealth();
-	int getHealth();
+  std::string getName() const;
+  int getMaxHealth() const;
+	int getHealth() const;
   void subHealth(int);
 	void addHealth(int);
-  int getAttack();
-  int getDefense();
+  int getAttack() const;
+  int getDefense() const;
 
   protected:
   void setName(std::string);

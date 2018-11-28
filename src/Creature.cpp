@@ -47,12 +47,12 @@ void Creature::setAttack(int a){ attack = a; }
 void Creature::setDefense(int d){ defense = d; }
 
 // Getters
-int Creature::getAttack() { return attack; }
+int Creature::getAttack() const { return attack; }
 
-int Creature::getDefense() { return defense; }
+int Creature::getDefense() const { return defense; }
 
-std::string Creature::getName() { return name; }
+std::string Creature::getName() const { return name; }
 
-int Creature::getHealth() { return health; }
+int Creature::getHealth() const { return health; }
 
-int Creature::getMaxHealth() {return maxHealth; }
+int Creature::getMaxHealth() const {return maxHealth; }
