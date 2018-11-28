@@ -1,12 +1,7 @@
 Main goals:
-Understand how to write tests
 Create tests for existing code
-Monster generation
 
 Later:
-Fix saving code
-loading
-change inv so first slots are equipped items
-Select dungeon level
+impiment an inventory where first slots are equipped items
 experience stuff
 make dying in dungeon code better

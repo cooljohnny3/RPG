@@ -9,7 +9,7 @@ Player::Player() {
   setName(temp);
   level = 1;
 	experience = 0;
-	weapon = Weapon("Wooden Sword", 1, 5);
+	weapon = Weapon("Wooden_Sword", 1, 5);
   calculateStats();
 }
 
@@ -19,8 +19,6 @@ Player::Player(std::string name, int maxHealth, int health, int level, int exper
   setHealth(health);
 	this->level = level;
 	this->experience = experience;
-  // Set up equipment
-  calculateStats();
 }
 
 void Player::calculateStats() {
@@ -44,21 +42,21 @@ void Player::addXp(int xp) {
 }
 
 // Getters
-int Player::getDeepestLevel() { return deepestLevel; }
+int Player::getDeepestLevel() const { return deepestLevel; }
 
-int Player::getLevel() { return level; }
+int Player::getLevel() const { return level; }
 
-int Player::getXp() { return experience; }
+int Player::getXp() const { return experience; }
 
-Weapon Player::getWep() { return weapon; }
+Weapon Player::getWep() const { return weapon; }
 
-Shield Player::getShield() { return shield; }
+Shield Player::getShield() const { return shield; }
 
-Helm Player::getHelm() { return helm; }
+Helm Player::getHelm() const { return helm; }
 
-Body Player::getBody() { return body; }
+Body Player::getBody() const { return body; }
 
-Pants Player::getPants() { return pants; }
+Pants Player::getPants() const { return pants; }
 
 // Setters
 void Player::setDeepestLevel(int level) { deepestLevel = level; }
