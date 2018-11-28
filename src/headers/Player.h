@@ -12,14 +12,14 @@ class Player : public Creature{
 public:
 	Player();
 	Player(std::string, int, int, int, int);
-	int getLevel();
-  int getDeepestLevel();
-	int getXp();
-	Weapon getWep();
-	Shield getShield();
-	Helm getHelm();
-	Body getBody();
-	Pants getPants();
+	int getLevel() const;
+  int getDeepestLevel() const;
+	int getXp() const;
+	Weapon getWep() const;
+	Shield getShield() const;
+	Helm getHelm() const;
+	Body getBody() const;
+	Pants getPants() const;
 	void addXp(int);
   void setDeepestLevel(int);
 	Weapon setWep(Weapon);

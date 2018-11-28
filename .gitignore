@@ -400,8 +400,17 @@ ASALocalRun/
 *.out
 *.app
 
-
-# End of https://www.gitignore.io/api/macos,visualstudio,visualstudiocode
+### CMake ###
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
 
 RPG
 unit_tests
+prop_tests
