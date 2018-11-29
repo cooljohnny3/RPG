@@ -11,11 +11,12 @@ public:
 	void loadedMenu();
 	void enterDung(int);
 	void save() const;
-	void load() const;
+	void load();
 
 private:
 	Player player;
   void saveData(std::string) const;
+    void loadData(std::string);
 
 };
 #endif

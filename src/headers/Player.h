@@ -12,6 +12,7 @@ class Player : public Creature{
 public:
 	Player();
 	Player(std::string, int, int, int, int);
+  void createPlayer();
 	int getLevel() const;
   int getDeepestLevel() const;
 	int getXp() const;
