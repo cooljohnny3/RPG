@@ -55,7 +55,7 @@ int main() {
   rc::check("player health should should decrease",
             [](Dungeon dung) {
               int initialHealth = dung.getPlayer().getHealth();
-              dung.monsterDamage(rc::gen::inRange(1, 100));
+              dung.monsterDamage(1);
               if(initialHealth == 1) {
                 RC_ASSERT(dung.getPlayer().getHealth() == dung.getPlayer().getMaxHealth());
               }
