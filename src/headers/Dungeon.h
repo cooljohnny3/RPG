@@ -15,6 +15,8 @@ public:
 	int combat();
   int playerDamage(int);
   int monsterDamage(int);
+  int combatMenu();
+  int combatAction(int);
   Monster getMonster();
   Player getPlayer();
 

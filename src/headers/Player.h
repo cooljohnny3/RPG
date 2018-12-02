@@ -28,7 +28,7 @@ public:
 	Helm setHelm(Helm);
 	Body setBody(Body);
 	Pants setPants(Pants);
-    void calculateStats();
+  void calculateStats();
 
 private:
   int deepestLevel;
