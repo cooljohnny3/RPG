@@ -5,8 +5,12 @@ Run `make`
 Specification and rough TODO list located in docs.
 
 ### Klee
-`docker run --rm -ti --volume={Path to RPG}/RPG:/home/klee/Code --ulimit='stack=-1:-1' klee/klee`
+`docker pull klee/klee`
 
-`clang -I ~/klee_src/include -emit-llvm -c -g ~/Code/test/Klee/Klee.cpp`
+`docker run --rm -ti --volume={Path to RPG}:/home/klee/Code --ulimit='stack=-1:-1' klee/klee`
 
-`klee Klee.bc`
+`cd Code/test/klee`
+
+`make`
+
+`ktest-tool --write-ints klee-last/test#.ktest`

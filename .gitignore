@@ -417,4 +417,4 @@ prop_tests
 test/rapidcheck/rapidcheckConfig.cmake
 klee-out-*
 klee-last
-Klee.bc
+test/Klee/*.bc
