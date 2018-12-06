@@ -415,3 +415,6 @@ RPG
 unit_tests
 prop_tests
 test/rapidcheck/rapidcheckConfig.cmake
+klee-out-*
+klee-last
+Klee.bc
