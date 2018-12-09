@@ -34,6 +34,7 @@ int Dungeon::combat() {
     choice = combatMenu();
     outcome = combatAction(choice);
     if(outcome != 0) {
+      // std::cout << "outcome= " << outcome << std::endl;
       return outcome;
     }
 	}

@@ -88,8 +88,9 @@ void World::enterDung(int level) {
 	std::cout << "You enter the dungeon..." << std::endl;
 
   // Start combat loop
-  while(status != 1 || status != 2) {
+  while(status != 1 && status != 2) {
     status = dungeon.combat();
+    // std::cout << "status= " << status << std::endl;
 
     if (status == 1) { std::cout << "You are revived in town.\n" << std::endl; }
 
