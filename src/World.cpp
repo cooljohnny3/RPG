@@ -108,6 +108,7 @@ void World::enterDung(int level) {
 
         else if(choice == 'n' || choice == 'N') {
           std::cout << "You emerge from the dungeon.\n" << std::endl;
+          save();
           return;
         }
 	    }
@@ -116,44 +117,8 @@ void World::enterDung(int level) {
 }
 
 void World::save() const{
-	std::string name;
-	std::fstream f;
-	bool valid = true;
-	char choice;
-
-  // Loops until a valid option has been reached
-	while(valid){
-		std::cout << "Enter a name: ";
-		std::cin >> name;
-
-		f.open("saves/" + name, std::fstream::in);
-
-    // Checks to see if file exists
-		if(f.peek() != std::ifstream::traits_type::eof()){
-			std::cout << "A file with that name already exists, would you like to overwrite this? (Y/N)";
-      while(choice != 'Y' || choice != 'y' || choice != 'N' || choice != 'n') {
-        std::cin >> choice;
-        if(choice == 'Y' || choice == 'y')
-          valid = false;
-
-        else if(choice != 'N' || choice != 'n')
-          f.close();
-
-        else 
-          std::cout << "Please answer Y/N" << std::endl;
-      }
-		}
-		else
-			valid = false;	
-	}
-
-	f.close();
-  saveData(name);
-}
-
-void World::saveData(std::string name) const {
   std::fstream f;
-	f.open("saves/" + name, std::fstream::out);
+	f.open("saves/" + player.getName(), std::fstream::out);
   
 	f << player.getName() << std::endl;
 	f << player.getMaxHealth() << std::endl;

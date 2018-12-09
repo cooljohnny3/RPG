@@ -15,8 +15,7 @@ public:
 
 private:
 	Player player;
-  void saveData(std::string) const;
-    void loadData(std::string);
+  void loadData(std::string);
 
 };
 #endif
