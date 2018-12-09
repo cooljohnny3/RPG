@@ -120,12 +120,15 @@ Creature_unittest.o : $(TEST_DIR)/Creature_unittest.cpp $(GTEST_HEADERS)
 Player_unittest.o : $(TEST_DIR)/Player_unittest.cpp $(GTEST_HEADERS)
 	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -c $(TEST_DIR)/Player_unittest.cpp
 
+World_unittest.o : $(TEST_DIR)/World_unittest.cpp $(GTEST_HEADERS)
+	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -c $(TEST_DIR)/World_unittest.cpp
+
 Monster_Generation.o : $(TEST_DIR)/Monster_Generation.cpp $(GTEST_HEADERS)
 	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -c $(TEST_DIR)/Monster_Generation.cpp
 
-UNIT_TESTS = Equipment_unittest.o Player_unittest.o Creature_unittest.o Monster_Generation.o
+UNIT_TESTS = Equipment_unittest.o Player_unittest.o Creature_unittest.o Monster_Generation.o World_unittest.o
 
-unit_tests : $(EQUIP) Creature.o Player.o Monster.o Dungeon.o $(UNIT_TESTS) gtest_main.a
+unit_tests : $(EQUIP) Creature.o Player.o Monster.o Dungeon.o World.o $(UNIT_TESTS) gtest_main.a
 	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -lpthread $^ -o $@
 
 # Start Property Tests
@@ -141,3 +144,5 @@ PROP_TESTS = Proptest.o
 
 prop_tests : $(EQUIP) Creature.o Player.o Monster.o Dungeon.o $(PROP_TESTS) librapidcheck.a
 	$(CXX) -lpthread $(EQUIP) Creature.o Player.o Monster.o Dungeon.o $(PROP_TESTS) $(RAPIDCHECK_DIR)/librapidcheck.a -o $@
+
+# Start Timing tests
