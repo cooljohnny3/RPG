@@ -7,31 +7,33 @@
 #include "Dungeon.h"
 #include "Functions.hpp"
 
-World::World(){}
+World::World() {
+  World::mainMenu = new MainMenu();
+  World::loadedMenu = new LoadedMenu();
+}
 
-World::~World(){}
+World::World(Menu* mainMenu, Menu* loadedMenu) {
+  World::mainMenu = mainMenu;
+  World::loadedMenu = loadedMenu;
+}
 
-void World::mainMenu(){
-	int choice = 0;
+World::~World() {}
+
+void World::start() {
+	int choice;
 
 	while (choice != 3) {
-		std::cout << "Welcome to RPG!" << std::endl;
-		std::cout << "What would you like to do?" << std::endl;
-		std::cout << "1 - New Game" << std::endl;
-		std::cout << "2 - Load save" << std::endl;
-		std::cout << "3 - Quit" << std::endl;
-		std::cin >> choice;
-		std::cout << std::endl;
+		choice = mainMenu->getChoice();
 
 		switch(choice){
 			case 1:		//New Game
 				player = Player();
         player.createPlayer();
-				loadedMenu();
+				loaded();
 				break;
 			case 2:		//Load
 				load();
-				loadedMenu();
+				loaded();
 				break;
 			case 3:		//Quit
 				std::cout << "Bye!" << std::endl;
@@ -42,18 +44,11 @@ void World::mainMenu(){
 	}			
 }
 
-void World::loadedMenu() {
+void World::loaded() {
 	int choice = 0;
 
 	while (choice != 5 && player.getHealth() > 0) {
-		std::cout << "What would you like to do?" << std::endl;
-		std::cout << "1 - Enter dungeon" << std::endl;
-		std::cout << "2 - Rest Up" << std::endl;
-		std::cout << "3 - Status" << std::endl;
-		std::cout << "4 - Save" << std::endl;
-		std::cout << "5 - Quit" << std::endl;
-		std::cin >> choice;
-		std::cout << std::endl;
+		choice = loadedMenu->getChoice();
 
 		switch(choice){
 			case 1:		//enter dungeon
@@ -81,14 +76,14 @@ void World::loadedMenu() {
 }
 
 void World::enterDung(int level) {
-	Dungeon dungeon = Dungeon(player, level);
+	Dungeon dungeon = Dungeon(new DungeonMenu(), player, level);
 	int status;
 	char choice;
 
 	std::cout << "You enter the dungeon..." << std::endl;
 
   // Start combat loop
-  while(status != 1 && status != 2) {
+  do {
     status = dungeon.combat();
     // std::cout << "status= " << status << std::endl;
 
@@ -97,7 +92,7 @@ void World::enterDung(int level) {
     else if (status == 2) { std::cout << "You emerge from the dungeon.\n" << std::endl; }
 
     else {
-      while(true) {
+      while(choice != 'Y' && choice != 'y' && choice != 'N' && choice != 'n') {
         std::cout << "Continue to next level? (Y/N)" << std::endl;
         std::cin >> choice;
 
@@ -109,12 +104,12 @@ void World::enterDung(int level) {
 
         else if(choice == 'n' || choice == 'N') {
           std::cout << "You emerge from the dungeon.\n" << std::endl;
-          save();
-          return;
+          status = 2;
         }
 	    }
     }
-  }
+  } while(status != 1 && status != 2);
+  save();
 }
 
 void World::save() const{

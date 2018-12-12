@@ -3,9 +3,13 @@
 #include <cstdlib>
 #include "Dungeon.h"
 
-Dungeon::Dungeon() {	level = 1; }
+Dungeon::Dungeon() {
+  menu = new DungeonMenu();
+  level = 1; 
+}
 
-Dungeon::Dungeon(Player player, int l) { 
+Dungeon::Dungeon(Menu* menu, Player player, int l) {
+  Dungeon::menu = menu;
   Dungeon::player = player;
   level = l;
 }
@@ -31,27 +35,13 @@ int Dungeon::combat() {
 	std::cout << "You encounter " << monster.getName() << std::endl;
 
 	while (true) {
-    choice = combatMenu();
+    choice = menu->getChoice();
     outcome = combatAction(choice);
     if(outcome != 0) {
       // std::cout << "outcome= " << outcome << std::endl;
       return outcome;
     }
 	}
-}
-
-// Displays the menu for combat and returns the player's choice
-int Dungeon::combatMenu() {
-  int choice;
-  // std::cout << "Player: Attack: " << player.getAttack() << " Defence: " << player.getDefense() << " Health: " << player.getHealth() <<std::endl;
-  // std::cout << "Monster: Attack: " << monster.getAttack() << " Defence: " << monster.getDefense() << " Health: " << monster.getHealth() <<std::endl;
-  std::cout << "\nHow do you wish to proceed?" << std::endl;
-  std::cout << "1 - Attack" << std::endl;
-  std::cout << "2 - Use Item" << std::endl;
-  std::cout << "3 - Run Away" << std::endl;
-  std::cin >> choice;
-  std::cout << std::endl;
-  return choice;
 }
 
 // Called when the player deals damage to the monster

@@ -65,7 +65,6 @@ void Player::createPlayer() {
 void Player::calculateStats() {
   setAttack(weapon.getStat() + 1);
   int sum = 0;
-  sum += getWep().getStat();
 	sum += getShield().getStat();
 	sum += getHelm().getStat();
 	sum += getBody().getStat();

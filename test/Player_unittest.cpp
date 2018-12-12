@@ -8,47 +8,19 @@ Helm helm = Helm("Helm", 1, 1);
 Body body = Body("Body", 1, 1);
 Pants pants = Pants("Pants", 1, 1);
 
-TEST(PlayerTest, getName) {
-  EXPECT_EQ("Name", constructedPlayer.getName());
-}
-
-TEST(PlayerTest, getMaxHealth) {
-  EXPECT_EQ(100, constructedPlayer.getMaxHealth());
-}
-
-TEST(PlayerTest, getHealth) {
-  EXPECT_EQ(95, constructedPlayer.getHealth());
-}
-
-TEST(PlayerTest, getLevel) {
-  EXPECT_EQ(10, constructedPlayer.getLevel());
-}
-
-TEST(PlayerTest, getXp) {
-  EXPECT_EQ(1000, constructedPlayer.getXp());
-}
-
-TEST(PlayerTest, getWep) {
+void addEquipment() {
   constructedPlayer.setWep(weapon);
-  EXPECT_EQ(weapon, constructedPlayer.getWep());
-}
-
-TEST(PlayerTest, getShield) {
   constructedPlayer.setShield(shield);
-  EXPECT_EQ(shield, constructedPlayer.getShield());
-}
-
-TEST(PlayerTest, getHelm) {
   constructedPlayer.setHelm(helm);
-  EXPECT_EQ(helm, constructedPlayer.getHelm());
-}
-
-TEST(PlayerTest, getBody) {
   constructedPlayer.setBody(body);
-  EXPECT_EQ(body, constructedPlayer.getBody());
+  constructedPlayer.setPants(pants);
 }
 
-TEST(PlayerTest, getPants) {
-  constructedPlayer.setPants(pants);
-  EXPECT_EQ(pants, constructedPlayer.getPants());
+TEST(PlayerTest, calculateStats) {
+  addEquipment();
+  constructedPlayer.calculateStats();
+  ASSERT_EQ(2, constructedPlayer.getAttack());
+  ASSERT_EQ(4, constructedPlayer.getDefense());
 }
+
+// Should test create_player function 

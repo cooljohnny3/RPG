@@ -2,19 +2,10 @@
 #include "gtest/gtest.h"
 
 Equipment emptyEquipment = Equipment();
-Equipment constructedEquipment = Equipment("Example", 10, 8);
+Equipment constructedEquipment1 = Equipment("Example", 10, 8);
+Equipment constructedEquipment2 = Equipment("Example", 10, 8);
 
-TEST(EquipmentTest, getName) {
-  EXPECT_EQ ("<Empty>", emptyEquipment.getName());
-  EXPECT_EQ ("Example", constructedEquipment.getName());
-}
-
-TEST(EquipmentTest, getStat) {
-  EXPECT_EQ (0, emptyEquipment.getStat());
-  EXPECT_EQ (8, constructedEquipment.getStat());
-}
-
-TEST(EquipmentTest, getReq) {
-  EXPECT_EQ (0, emptyEquipment.getReq());
-  EXPECT_EQ (10, constructedEquipment.getReq());
+TEST(EquipmentTest, equals) {
+  ASSERT_FALSE(emptyEquipment == constructedEquipment1);
+  ASSERT_TRUE(constructedEquipment1 == constructedEquipment2);
 }
