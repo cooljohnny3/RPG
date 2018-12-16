@@ -7,12 +7,14 @@
 class World {
 public:
 	World();
-  World(Menu*, Menu*);
+  World(Player, Menu*, Menu*);
 	~World();
 	void start();
+  void handleMainMenu(int);
 	void loaded();
+  void handleLoadedMenu(int);
 	void enterDung(int);
-	void save() const;
+	void save(std::string) const;
 	void load();
 
 private:

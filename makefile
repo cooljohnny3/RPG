@@ -54,11 +54,14 @@ run : build
 build : $(SRC_DIR)/main.cpp Creature.o Player.o Monster.o $(EQUIP) Dungeon.o World.o
 	$(CXX) $(CXXFLAGS) -o RPG $^
 
-unit_test : unit_tests
-	./unit_tests
+unit_test : unit_tests clean_unittest
+		./unit_tests
 
 prop_test : prop_tests
 	./prop_tests
+
+clean_unittest :
+	test ! -f ./saves/TEST || rm ./saves/TEST
 
 clean_rapidcheck : 
 	rm -rf $(RAPIDCHECK_DIR)/CMakeFiles $(RAPIDCHECK_DIR)/cmake_install.cmake \

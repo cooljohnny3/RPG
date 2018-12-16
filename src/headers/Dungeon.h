@@ -1,6 +1,8 @@
 #ifndef DUNGEON_H
 #define DUNGEON_H
 
+#include <memory>
+
 #include "Menu.hpp"
 #include "Player.h"
 #include "Monster.h"
@@ -8,7 +10,7 @@
 class Dungeon {
 public:
 	Dungeon();
-	Dungeon(Menu*, Player, int);
+	Dungeon(std::shared_ptr<Menu>, Player, int);
 	~Dungeon();
   void nextLevel();
 	//initiates combat with a monster
@@ -16,12 +18,12 @@ public:
 	int combat();
   int playerDamage(int);
   int monsterDamage(int);
-  int combatAction(int);
+  int combatAction(int, int = 0);
   Monster getMonster();
   Player getPlayer();
 
 private:
-  Menu *menu;
+  std::shared_ptr<Menu> menu;
 	Monster monster;
   Player player;
 	int level; //gets harder when higher

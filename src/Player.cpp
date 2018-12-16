@@ -5,17 +5,21 @@
 
 Player::Player() {
   level = 1;
+  deepestLevel = 0;
 	experience = 0;
 	weapon = Weapon("Wooden_Sword", 1, 5);
   calculateStats();
 }
 
-Player::Player(std::string name, int maxHealth, int health, int level, int experience) {
+Player::Player(std::string name, int maxHealth, int health, int level, int deepeestLevel, int experience) {
   setName(name);
   setMaxHealth(maxHealth);
   setHealth(health);
-	this->level = level;
-	this->experience = experience;
+	Player::level = level;
+  setDeepestLevel(deepeestLevel);
+	Player::experience = experience;
+  weapon = Weapon("Wooden_Sword", 1, 5);
+  calculateStats();
 }
 
 void Player::createPlayer() {

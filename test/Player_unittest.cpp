@@ -1,7 +1,7 @@
 #include "../src/headers/Player.h"
 #include "gtest/gtest.h"
 
-Player constructedPlayer = Player("Name", 100, 95, 10, 1000);
+Player constructedPlayer = Player("Name", 100, 95, 10, 11,  1000);
 Weapon weapon = Weapon("Sword", 1, 1);
 Shield shield = Shield("Sheild", 1, 1);
 Helm helm = Helm("Helm", 1, 1);

@@ -67,7 +67,12 @@ class TestMenu : public Menu {
     }
 
   private:
-    bool checkChoice(int choice) {}
+    bool checkChoice(int choice) { 
+      if(choice) {
+        return true; 
+      }
+      return false;
+    }
 };
 
 class DungeonMenu : public Menu {
