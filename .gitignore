@@ -411,7 +411,11 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 
+saves/*
 RPG
 unit_tests
 prop_tests
 test/rapidcheck/rapidcheckConfig.cmake
+klee-out-*
+klee-last
+test/Klee/*.bc

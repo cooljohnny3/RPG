@@ -54,11 +54,14 @@ run : build
 build : $(SRC_DIR)/main.cpp Creature.o Player.o Monster.o $(EQUIP) Dungeon.o World.o
 	$(CXX) $(CXXFLAGS) -o RPG $^
 
-unit_test : unit_tests
-	./unit_tests
+unit_test : unit_tests clean_unittest
+		./unit_tests
 
 prop_test : prop_tests
 	./prop_tests
+
+clean_unittest :
+	test ! -f ./saves/TEST || rm ./saves/TEST
 
 clean_rapidcheck : 
 	rm -rf $(RAPIDCHECK_DIR)/CMakeFiles $(RAPIDCHECK_DIR)/cmake_install.cmake \
@@ -114,18 +117,18 @@ World.o : $(SRC_DIR)/World.cpp $(SRC_DIR)/headers/World.h
 Equipment_unittest.o : $(TEST_DIR)/Equipment_unittest.cpp $(GTEST_HEADERS)
 	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -c $(TEST_DIR)/Equipment_unittest.cpp
 
-Creature_unittest.o : $(TEST_DIR)/Creature_unittest.cpp $(GTEST_HEADERS)
-	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -c $(TEST_DIR)/Creature_unittest.cpp
-
 Player_unittest.o : $(TEST_DIR)/Player_unittest.cpp $(GTEST_HEADERS)
 	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -c $(TEST_DIR)/Player_unittest.cpp
+
+World_unittest.o : $(TEST_DIR)/World_unittest.cpp $(GTEST_HEADERS)
+	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -c $(TEST_DIR)/World_unittest.cpp
 
 Monster_Generation.o : $(TEST_DIR)/Monster_Generation.cpp $(GTEST_HEADERS)
 	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -c $(TEST_DIR)/Monster_Generation.cpp
 
-UNIT_TESTS = Equipment_unittest.o Player_unittest.o Creature_unittest.o Monster_Generation.o
+UNIT_TESTS = Equipment_unittest.o Player_unittest.o Monster_Generation.o World_unittest.o
 
-unit_tests : $(EQUIP) Creature.o Player.o Monster.o Dungeon.o $(UNIT_TESTS) gtest_main.a
+unit_tests : $(EQUIP) Creature.o Player.o Monster.o Dungeon.o World.o $(UNIT_TESTS) gtest_main.a
 	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -lpthread $^ -o $@
 
 # Start Property Tests
@@ -141,3 +144,5 @@ PROP_TESTS = Proptest.o
 
 prop_tests : $(EQUIP) Creature.o Player.o Monster.o Dungeon.o $(PROP_TESTS) librapidcheck.a
 	$(CXX) -lpthread $(EQUIP) Creature.o Player.o Monster.o Dungeon.o $(PROP_TESTS) $(RAPIDCHECK_DIR)/librapidcheck.a -o $@
+
+# Start Timing tests

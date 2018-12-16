@@ -3,7 +3,7 @@
 
 int main() {
 	World w = World();
-	w.mainMenu();
+	w.start();
 
 	return 0;
 }

@@ -7,96 +7,99 @@
 #include "Dungeon.h"
 #include "Functions.hpp"
 
-World::World(){}
+World::World() {
+  World::mainMenu = new MainMenu();
+  World::loadedMenu = new LoadedMenu();
+}
 
-World::~World(){}
+World::World(Player player, Menu* mainMenu, Menu* loadedMenu) {
+  World::player = player;
+  World::mainMenu = mainMenu;
+  World::loadedMenu = loadedMenu;
+}
 
-void World::mainMenu(){
-	int choice = 0;
+World::~World() {}
+
+void World::start() {
+	int choice;
 
 	while (choice != 3) {
-		std::cout << "Welcome to RPG!" << std::endl;
-		std::cout << "What would you like to do?" << std::endl;
-		std::cout << "1 - New Game" << std::endl;
-		std::cout << "2 - Load save" << std::endl;
-		std::cout << "3 - Quit" << std::endl;
-		std::cin >> choice;
-		std::cout << std::endl;
-
-		switch(choice){
-			case 1:		//New Game
-				player = Player();
-        player.createPlayer();
-				loadedMenu();
-				break;
-			case 2:		//Load
-				load();
-				loadedMenu();
-				break;
-			case 3:		//Quit
-				std::cout << "Bye!" << std::endl;
-				break;
-			default:
-				std::cout << "Please enter a valid number.\n" << std::endl;	
-		}
+		choice = mainMenu->getChoice();
+		handleMainMenu(choice);
 	}			
 }
 
-void World::loadedMenu() {
+void World::handleMainMenu(int choice) {
+  switch(choice){
+    case 1:		//New Game
+      player = Player();
+      player.createPlayer();
+      loaded();
+      break;
+    case 2:		//Load
+      load();
+      loaded();
+      break;
+    case 3:		//Quit
+      std::cout << "Bye!" << std::endl;
+      break;
+    default:
+      std::cout << "Please enter a valid number.\n" << std::endl;	
+  }
+}
+
+void World::loaded() {
 	int choice = 0;
 
 	while (choice != 5 && player.getHealth() > 0) {
-		std::cout << "What would you like to do?" << std::endl;
-		std::cout << "1 - Enter dungeon" << std::endl;
-		std::cout << "2 - Rest Up" << std::endl;
-		std::cout << "3 - Status" << std::endl;
-		std::cout << "4 - Save" << std::endl;
-		std::cout << "5 - Quit" << std::endl;
-		std::cin >> choice;
-		std::cout << std::endl;
-
-		switch(choice){
-			case 1:		//enter dungeon
-				enterDung(0);
-				break;
-			case 2:		//rest
-				player.addHealth(5);
-				std::cout << std::endl;
-				break;
-			case 3:		//status
-				std::cout << "Health: " << player.getHealth() << std::endl;
-				std::cout << "Level: " << player.getLevel() << std::endl;
-				//std::cout << "XP to level: " << player.getXP() << std::endl; //Not implimented
-				std::cout << std::endl;
-				break;
-			case 4:		//save
-				save();
-				break;
-			case 5:		//Exit
-				break;
-			default:
-				std::cout << "Please enter a valid number.\n" << std::endl;	
-		}
+		choice = loadedMenu->getChoice();
+    handleLoadedMenu(choice);
 	}
 }
 
+void World::handleLoadedMenu(int choice) {
+  switch(choice){
+    case 1:		//enter dungeon
+      enterDung(0);
+      break;
+    case 2:		//rest
+      player.addHealth(5);
+      std::cout << std::endl;
+      break;
+    case 3:		//status
+      std::cout << "Health: " << player.getHealth() << std::endl;
+      std::cout << "Level: " << player.getLevel() << std::endl;
+      //std::cout << "XP to level: " << player.getXP() << std::endl; //Not implimented
+      std::cout << std::endl;
+      break;
+    case 4:		//save
+      save(player.getName());
+      break;
+    case 5:		//Exit
+      break;
+    default:
+      std::cout << "Please enter a valid number.\n" << std::endl;	
+  }
+}
+
 void World::enterDung(int level) {
-	Dungeon dungeon = Dungeon(player, level);
+	Dungeon dungeon = Dungeon(std::make_shared<DungeonMenu>(), player, level);
 	int status;
 	char choice;
 
 	std::cout << "You enter the dungeon..." << std::endl;
 
   // Start combat loop
-  while(status != 1 || status != 2) {
+  do {
     status = dungeon.combat();
+    // std::cout << "status= " << status << std::endl;
 
     if (status == 1) { std::cout << "You are revived in town.\n" << std::endl; }
 
     else if (status == 2) { std::cout << "You emerge from the dungeon.\n" << std::endl; }
 
     else {
-      while(true) {
+      while(choice != 'Y' && choice != 'y' && choice != 'N' && choice != 'n') {
         std::cout << "Continue to next level? (Y/N)" << std::endl;
         std::cin >> choice;
 
@@ -108,50 +111,15 @@ void World::enterDung(int level) {
 
         else if(choice == 'n' || choice == 'N') {
           std::cout << "You emerge from the dungeon.\n" << std::endl;
-          return;
+          status = 2;
         }
 	    }
     }
-  }
+  } while(status != 1 && status != 2);
+  save(player.getName());
 }
 
-void World::save() const{
-	std::string name;
-	std::fstream f;
-	bool valid = true;
-	char choice;
-
-  // Loops until a valid option has been reached
-	while(valid){
-		std::cout << "Enter a name: ";
-		std::cin >> name;
-
-		f.open("saves/" + name, std::fstream::in);
-
-    // Checks to see if file exists
-		if(f.peek() != std::ifstream::traits_type::eof()){
-			std::cout << "A file with that name already exists, would you like to overwrite this? (Y/N)";
-      while(choice != 'Y' || choice != 'y' || choice != 'N' || choice != 'n') {
-        std::cin >> choice;
-        if(choice == 'Y' || choice == 'y')
-          valid = false;
-
-        else if(choice != 'N' || choice != 'n')
-          f.close();
-
-        else 
-          std::cout << "Please answer Y/N" << std::endl;
-      }
-		}
-		else
-			valid = false;	
-	}
-
-	f.close();
-  saveData(name);
-}
-
-void World::saveData(std::string name) const {
+void World::save(std::string name) const{
   std::fstream f;
 	f.open("saves/" + name, std::fstream::out);
   
@@ -207,13 +175,13 @@ void World::loadData(std::string name) {
     stats.insert(stats.end(), temp.begin(), temp.end());
   }
 
-  player = Player(stats[0], std::stoi(stats[1]), std::stoi(stats[2]), std::stoi(stats[3]), std::stoi(stats[4]));
-  player.setDeepestLevel(std::stoi(stats[5]));
-  player.setWep(Weapon(stats[6], std::stoi(stats[7]), std::stoi(stats[8])));
-  player.setShield(Shield(stats[9], std::stoi(stats[10]), std::stoi(stats[11])));
-  player.setHelm(Helm(stats[12], std::stoi(stats[13]), std::stoi(stats[14])));
-  player.setBody(Body(stats[15], std::stoi(stats[16]), std::stoi(stats[17])));
-  player.setPants(Pants(stats[18], std::stoi(stats[19]), std::stoi(stats[20])));
+  player = Player(stats[0], std::stoi(stats[1]), std::stoi(stats[2]), std::stoi(stats[3]), std::stoi(stats[4]), std::stoi(stats[5]));
+  player.setDeepestLevel(std::stoi(stats[6]));
+  player.setWep(Weapon(stats[7], std::stoi(stats[8]), std::stoi(stats[9])));
+  player.setShield(Shield(stats[10], std::stoi(stats[11]), std::stoi(stats[12])));
+  player.setHelm(Helm(stats[13], std::stoi(stats[14]), std::stoi(stats[15])));
+  player.setBody(Body(stats[16], std::stoi(stats[17]), std::stoi(stats[18])));
+  player.setPants(Pants(stats[19], std::stoi(stats[20]), std::stoi(stats[21])));
   player.calculateStats();
 
 	f.close();
