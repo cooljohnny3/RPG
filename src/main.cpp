@@ -1,5 +1,5 @@
 #include <iostream>
-#include "headers/World.h"
+#include "World.h"
 
 int main() {
 	World w = World();

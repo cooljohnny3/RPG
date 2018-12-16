@@ -1,4 +1,4 @@
-#include "headers/Pants.h"
+#include "Pants.h"
 
 Pants::Pants() : Equipment() {}
 

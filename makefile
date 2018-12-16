@@ -1,7 +1,7 @@
 all : run
 
 # Flags passed to the C++ compiler.
-CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11
+CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11 -isystem $(SRC_DIR)/headers
 
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.
@@ -125,7 +125,7 @@ Monster_Generation.o : $(TEST_DIR)/Monster_Generation.cpp $(GTEST_HEADERS)
 
 UNIT_TESTS = Equipment_unittest.o Player_unittest.o Creature_unittest.o Monster_Generation.o
 
-unit_tests : $(EQUIP) Creature.o Player.o Monster.o $(UNIT_TESTS) gtest_main.a
+unit_tests : $(EQUIP) Creature.o Player.o Monster.o Dungeon.o $(UNIT_TESTS) gtest_main.a
 	$(CXX) $(GTEST_INCLUDE) $(CXXFLAGS) -lpthread $^ -o $@
 
 # Start Property Tests
@@ -139,5 +139,5 @@ librapidcheck.a : $(RAPIDCHECK_DIR)/CMakeLists.txt
 
 PROP_TESTS = Proptest.o
 
-prop_tests : $(EQUIP) Creature.o Player.o Monster.o $(PROP_TESTS) librapidcheck.a
-	$(CXX) -lpthread $(EQUIP) Creature.o Player.o Monster.o $(PROP_TESTS) $(RAPIDCHECK_DIR)/librapidcheck.a -o $@
+prop_tests : $(EQUIP) Creature.o Player.o Monster.o Dungeon.o $(PROP_TESTS) librapidcheck.a
+	$(CXX) -lpthread $(EQUIP) Creature.o Player.o Monster.o Dungeon.o $(PROP_TESTS) $(RAPIDCHECK_DIR)/librapidcheck.a -o $@

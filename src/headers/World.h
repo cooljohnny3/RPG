@@ -1,7 +1,7 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include "./Player.h"
+#include "Player.h"
 
 class World {
 public:
@@ -11,11 +11,12 @@ public:
 	void loadedMenu();
 	void enterDung(int);
 	void save() const;
-	void load() const;
+	void load();
 
 private:
-	Player* player;
+	Player player;
   void saveData(std::string) const;
+    void loadData(std::string);
 
 };
 #endif

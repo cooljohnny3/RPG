@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <limits>
-#include "headers/Monster.h"
+#include "Monster.h"
 
 Monster::Monster() {
 	setName("default");

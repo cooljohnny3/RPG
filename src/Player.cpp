@@ -1,12 +1,8 @@
 #include <iostream>
 #include <cmath>
-#include "headers/Player.h"
+#include "Player.h"
 
 Player::Player() {
-  std::string temp;
-  std::cout << "What is your name? ";
-	std::cin >> temp;
-  setName(temp);
   level = 1;
 	experience = 0;
 	weapon = Weapon("Wooden_Sword", 1, 5);
@@ -19,6 +15,13 @@ Player::Player(std::string name, int maxHealth, int health, int level, int exper
   setHealth(health);
 	this->level = level;
 	this->experience = experience;
+}
+
+void Player::createPlayer() {
+  std::string temp;
+  std::cout << "What is your name? ";
+	std::cin >> temp;
+  setName(temp);
 }
 
 void Player::calculateStats() {
