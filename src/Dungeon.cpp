@@ -12,6 +12,8 @@ Dungeon::Dungeon(Player player, int l) {
 
 Dungeon::~Dungeon() {}
 
+// Incriments the dungeon level and records the play's deepest level 
+// if the next level is greater than the player's deepest depth
 void Dungeon::nextLevel() {
   level++;
   if(level > player.getDeepestLevel()) {
@@ -19,52 +21,39 @@ void Dungeon::nextLevel() {
   }
 }
 
+// Main combat loop
 int Dungeon::combat() {
   monster = Monster(level);
-	int damage, choice = 0;
+  int choice;
+  int outcome;
 	srand(time(NULL));
 
 	std::cout << "You encounter " << monster.getName() << std::endl;
 
 	while (true) {
-    // std::cout << "Player: Attack: " << player.getAttack() << " Defence: " << player.getDefense() << " Health: " << player.getHealth() <<std::endl;
-    // std::cout << "Monster: Attack: " << monster.getAttack() << " Defence: " << monster.getDefense() << " Health: " << monster.getHealth() <<std::endl;
-		std::cout << "\nHow do you wish to proceed?" << std::endl;
-		std::cout << "1 - Attack" << std::endl;
-		std::cout << "2 - Use Item" << std::endl;
-		std::cout << "3 - Run Away" << std::endl;
-		std::cin >> choice;
-		std::cout << std::endl;
-
-		if (choice == 1) { //Attack
-			damage = rand() % player.getWep().getStat();
-			if(playerDamage(damage) == 2) {
-        return 2;
-      }
-		}			
-
-		else if (choice == 2) {//Use item
-			std::cout << "Not implimented" << std::endl;
-    }
-
-		else if (choice == 3) { //Run away, 50% success
-			if (rand() % 2 == 0) {
-				std::cout << "You run away." << std::endl;
-				return 1; //run away
-			}
-				
-			else {
-				std::cout << "You fail to escape." << std::endl;
-      }
-		}
-
-    int damage = rand() % (monster.getAttack() + 1);
-    if(monsterDamage(damage) == 0) {
-      return 0; //dead
+    choice = combatMenu();
+    outcome = combatAction(choice);
+    if(outcome != 0) {
+      return outcome;
     }
 	}
 }
 
+// Displays the menu for combat and returns the player's choice
+int Dungeon::combatMenu() {
+  int choice;
+  // std::cout << "Player: Attack: " << player.getAttack() << " Defence: " << player.getDefense() << " Health: " << player.getHealth() <<std::endl;
+  // std::cout << "Monster: Attack: " << monster.getAttack() << " Defence: " << monster.getDefense() << " Health: " << monster.getHealth() <<std::endl;
+  std::cout << "\nHow do you wish to proceed?" << std::endl;
+  std::cout << "1 - Attack" << std::endl;
+  std::cout << "2 - Use Item" << std::endl;
+  std::cout << "3 - Run Away" << std::endl;
+  std::cin >> choice;
+  std::cout << std::endl;
+  return choice;
+}
+
+// Called when the player deals damage to the monster
 int Dungeon::playerDamage(int damage) {
   if (damage != 0) {
     std::cout << "You did " << damage << " damage to " << monster.getName() << "." << std::endl;
@@ -72,29 +61,65 @@ int Dungeon::playerDamage(int damage) {
 
     if (monster.getHealth() == monster.getMaxHealth()) {
       std::cout << "You have slain the " << monster.getName() << std::endl;
-      return 2; //win
+      return 1; //win
     }
   }	
 
   else {
     std::cout << "Doh! you missed." << std::endl;
   }
+  return 0;
 }
 
+// Called when the monster deals damage to the player
 int Dungeon::monsterDamage(int damage) {
-  if (damage != 0 && monster.getHealth() > 0) {
+  if (damage > 0) {
     std::cout << monster.getName() << " did " << damage << " damage to you." << std::endl;
     player.subHealth(damage);
 
     if (player.getHealth() == player.getMaxHealth()) {
       std::cout << "You have died" << std::endl;
-      return 0;  //dead
+      return 1;  //dead
     }
   }
 
   else {
     std::cout << monster.getName() << " misses." << std::endl;
   }
+  return 0;
+}
+
+int Dungeon::combatAction(int choice) {
+  int damage;
+  if (choice == 1) { //Attack
+    // calculate damage
+    damage = rand() % player.getWep().getStat();
+    if(playerDamage(damage) == 1) {
+      return 3; // Monster killed
+    }
+  }			
+
+  else if (choice == 2) { // Use item
+    std::cout << "Not implimented" << std::endl;
+  }
+
+  else if (choice == 3) { // Run away, 50% success
+    if (rand() % 2 == 0) {
+      std::cout << "You run away." << std::endl;
+      return 2; // run away
+    }
+      
+    else {
+      std::cout << "You fail to escape." << std::endl;
+    }
+  }
+
+  // Monster attacks
+  damage = rand() % (monster.getAttack() + 1);
+  if(monsterDamage(damage) == 1) {
+    return 1; // dead
+  }
+  return 0;  // Nothing
 }
 
 Monster Dungeon::getMonster() { return monster; }

@@ -1,7 +1,11 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <vector>
+
 #include "World.h"
 #include "Dungeon.h"
+#include "Functions.hpp"
 
 World::World(){}
 
@@ -22,6 +26,7 @@ void World::mainMenu(){
 		switch(choice){
 			case 1:		//New Game
 				player = Player();
+        player.createPlayer();
 				loadedMenu();
 				break;
 			case 2:		//Load
@@ -76,19 +81,19 @@ void World::loadedMenu() {
 }
 
 void World::enterDung(int level) {
-	Dungeon dungeon = Dungeon(level);
+	Dungeon dungeon = Dungeon(player, level);
 	int status;
 	char choice;
 
 	std::cout << "You enter the dungeon..." << std::endl;
 
   // Start combat loop
-  while(true) {
+  while(status != 1 || status != 2) {
     status = dungeon.combat();
 
-    if (status == 0) { std::cout << "You are revived in town.\n" << std::endl; }
+    if (status == 1) { std::cout << "You are revived in town.\n" << std::endl; }
 
-    else if (status == 1) { std::cout << "You emerge from the dungeon.\n" << std::endl; }
+    else if (status == 2) { std::cout << "You emerge from the dungeon.\n" << std::endl; }
 
     else {
       while(true) {
@@ -165,7 +170,7 @@ void World::saveData(std::string name) const {
 	f.close();
 }
 
-void World::load() const{
+void World::load() {
 	std::string name;
 	std::fstream f;
 
@@ -202,14 +207,14 @@ void World::loadData(std::string name) {
     stats.insert(stats.end(), temp.begin(), temp.end());
   }
 
-  player = new Player(stats[0], std::stoi(stats[1]), std::stoi(stats[2]), std::stoi(stats[3]), std::stoi(stats[4]));
-  player->setDeepestLevel(std::stoi(stats[5]));
-  player->setWep(Weapon(stats[6], std::stoi(stats[7]), std::stoi(stats[8])));
-  player->setShield(Shield(stats[9], std::stoi(stats[10]), std::stoi(stats[11])));
-  player->setHelm(Helm(stats[12], std::stoi(stats[13]), std::stoi(stats[14])));
-  player->setBody(Body(stats[15], std::stoi(stats[16]), std::stoi(stats[17])));
-  player->setPants(Pants(stats[18], std::stoi(stats[19]), std::stoi(stats[20])));
-  player->calculateStats();
+  player = Player(stats[0], std::stoi(stats[1]), std::stoi(stats[2]), std::stoi(stats[3]), std::stoi(stats[4]));
+  player.setDeepestLevel(std::stoi(stats[5]));
+  player.setWep(Weapon(stats[6], std::stoi(stats[7]), std::stoi(stats[8])));
+  player.setShield(Shield(stats[9], std::stoi(stats[10]), std::stoi(stats[11])));
+  player.setHelm(Helm(stats[12], std::stoi(stats[13]), std::stoi(stats[14])));
+  player.setBody(Body(stats[15], std::stoi(stats[16]), std::stoi(stats[17])));
+  player.setPants(Pants(stats[18], std::stoi(stats[19]), std::stoi(stats[20])));
+  player.calculateStats();
 
 	f.close();
 }

@@ -8,13 +8,14 @@ namespace rc {
   template<>
   struct Arbitrary<Player> {
     static Gen<Player> arbitrary() {
+      const auto maxHealth = gen::inRange<int>(10, 100);
       // Think supposed to be pointer but works without?
       return gen::construct<Player>(
         gen::arbitrary<std::string>(),
-        gen::inRange(0, 100),
-        gen::inRange(0, 100),
-        gen::inRange(0, 100),
-        gen::inRange(0, 100));
+        maxHealth,
+        gen::inRange<int>(1, 100),  // Ideally would want the max of this to be max health
+        gen::inRange<int>(1, 100),
+        gen::inRange<int>(0, 100));
     }
   };
 
@@ -55,7 +56,12 @@ int main() {
             [](Dungeon dung) {
               int initialHealth = dung.getPlayer().getHealth();
               dung.monsterDamage(1);
-              RC_ASSERT(initialHealth >= dung.getPlayer().getHealth());
+              if(initialHealth == 1) {
+                RC_ASSERT(dung.getPlayer().getHealth() == dung.getPlayer().getMaxHealth());
+              }
+              else {
+                RC_ASSERT(initialHealth >= dung.getPlayer().getHealth());
+              }
             });
 
   return 0;
