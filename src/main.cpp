@@ -1,9 +1,9 @@
 #include <iostream>
-#include "headers/World.h"
+#include "World.h"
 
 int main() {
 	World w = World();
-	w.mainMenu();
+	w.start();
 
 	return 0;
 }

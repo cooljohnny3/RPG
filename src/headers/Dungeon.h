@@ -1,22 +1,32 @@
 #ifndef DUNGEON_H
 #define DUNGEON_H
 
-#include "./Player.h"
-#include "./Monster.h"
+#include <memory>
 
-class Dungeon{
+#include "Menu.hpp"
+#include "Player.h"
+#include "Monster.h"
+
+class Dungeon {
 public:
 	Dungeon();
-	Dungeon(int);
+	Dungeon(std::shared_ptr<Menu>, Player, int);
 	~Dungeon();
-	void nextLevel();
+  void nextLevel();
 	//initiates combat with a monster
 	//return 0 if player dies, 1 if runs away, and 2 if monster dies
-	int combat(Player*); 
+	int combat();
+  int playerDamage(int);
+  int monsterDamage(int);
+  int combatAction(int, int = 0);
+  Monster getMonster();
+  Player getPlayer();
 
 private:
-	Monster m;
-	int level; //gets harderwhen higher
+  std::shared_ptr<Menu> menu;
+	Monster monster;
+  Player player;
+	int level; //gets harder when higher
 };
 
 #endif

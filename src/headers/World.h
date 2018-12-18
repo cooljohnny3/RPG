@@ -1,21 +1,27 @@
 #ifndef WORLD_H
 #define WORLD_H
 
-#include "./Player.h"
+#include "Menu.hpp"
+#include "Player.h"
 
 class World {
 public:
 	World();
+  World(Player, Menu*, Menu*);
 	~World();
-	void mainMenu();
-	void loadedMenu();
+	void start();
+  void handleMainMenu(int);
+	void loaded();
+  void handleLoadedMenu(int);
 	void enterDung(int);
-	void save();
+	void save(std::string) const;
 	void load();
 
 private:
-	Player *p;
+  Menu *mainMenu;
+  Menu *loadedMenu;
+	Player player;
+  void loadData(std::string);
+
 };
-
-
 #endif

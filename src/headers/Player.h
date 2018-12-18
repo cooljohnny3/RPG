@@ -11,22 +11,27 @@
 class Player : public Creature{
 public:
 	Player();
-	Player(int, int, int, int, int);
-	int getLevel();
-	int getXp();
-	Weapon getWep();
-	Shield getShield();
-	Helm getHelm();
-	Body getBody();
-	Pants getPants();
+	Player(std::string, int, int, int, int, int);
+  void createPlayer();
+	int getLevel() const;
+  int getDeepestLevel() const;
+	int getXp() const;
+	Weapon getWep() const;
+	Shield getShield() const;
+	Helm getHelm() const;
+	Body getBody() const;
+	Pants getPants() const;
 	void addXp(int);
+  void setDeepestLevel(int);
 	Weapon setWep(Weapon);
 	Shield setShield(Shield);
 	Helm setHelm(Helm);
 	Body setBody(Body);
 	Pants setPants(Pants);
+  void calculateStats();
 
 private:
+  int deepestLevel;
 	int level;
 	int experience;
 	Weapon weapon;
@@ -34,6 +39,5 @@ private:
 	Helm helm;
 	Body body;
 	Pants pants;
-  void calculateStats();
 };
 #endif

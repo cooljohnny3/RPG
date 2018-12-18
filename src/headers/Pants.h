@@ -1,7 +1,7 @@
 #ifndef PANTS_H
 #define PANTS_H
 
-#include "./Equipment.h"
+#include "Equipment.h"
 
 class Pants : public Equipment {
 public:
